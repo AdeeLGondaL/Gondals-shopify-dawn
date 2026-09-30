@@ -14,12 +14,14 @@
         <li class="gondals-cats__item" {{ block.shopify_attributes }}>
           <a href="{{ link }}" class="gondals-cats__link">
             <span class="gondals-cats__img">
+              {%- comment -%} Decorative: the visible label already names the link {%- endcomment -%}
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: label }}
+                {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '', sizes: '(min-width: 990px) 130px, 96px', widths: '200, 300, 400' }}
               {%- elsif c.featured_image -%}
-                {{ c.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: label }}
+                {{ c.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: '', sizes: '(min-width: 990px) 130px, 96px', widths: '200, 300, 400' }}
               {%- elsif block.settings.image_url != blank -%}
-                <img src="{{ block.settings.image_url }}&w=400" alt="{{ label | escape }}" loading="lazy" width="400" height="400">
+                {%- if block.settings.image_url contains '?' -%}{%- assign img_sep = '&' -%}{%- else -%}{%- assign img_sep = '?' -%}{%- endif -%}
+                <img src="{{ block.settings.image_url }}{{ img_sep }}w=400" alt="" loading="lazy" width="400" height="400">
               {%- else -%}
                 {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
               {%- endif -%}

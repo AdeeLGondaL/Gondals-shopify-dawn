@@ -537,6 +537,7 @@
     "back_to_top": "Nach oben",
     "prev": "Zurück",
     "next": "Weiter",
+    "go_to_slide": "Zu Folie {{ index }}",
     "delivery_label": "Voraussichtliche Lieferung:",
     "delivery_fallback": "in {{ min }}–{{ max }} Werktagen",
     "trust_shipping": "Kostenloser Versand ab 49 €",

@@ -5,15 +5,20 @@
    ========================================================= */
 :root {
   --gondals-teal: #30aabd;
-  --gondals-teal-dark: #23899a;
+  /* Text-bearing tokens are tuned for WCAG AA (4.5:1) at small sizes */
+  --gondals-teal-dark: #1b7a89;
   --gondals-deep: #00353d;
   --gondals-ink: #111b1d;
-  --gondals-muted: #6b7c80;
+  --gondals-muted: #5e6f73;
   --gondals-line: #e6ecee;
   --gondals-soft: #f2f6f7;
   --gondals-sale: #e5484d;
+  --gondals-sale-strong: #d7373d;
   --gondals-green: #16a34a;
+  --gondals-green-text: #15803d;
   --gondals-green-bg: #dcfce7;
+  --gondals-focus: 0 0 0 2px #fff, 0 0 0 4px var(--gondals-teal-dark);
+  --gondals-float-base: 2rem;
   --gondals-radius: 16px;
   --gondals-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --gondals-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -118,7 +123,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 
 /* ---------- Pill buttons ---------- */
 .gondals-pill {
-  display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap; min-height: 4.4rem;
   padding: 0.8rem 1.8rem; border-radius: 99px; border: 1px solid var(--gondals-line);
   color: var(--gondals-deep); font-size: 1.35rem; font-weight: 600; text-decoration: none;
   transition: background 0.2s var(--gondals-ease), color 0.2s, border-color 0.2s;
@@ -184,13 +189,21 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   display: none; place-items: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s var(--gondals-spring), background 0.2s;
 }
+.gondals-hero__arrow svg { width: 2rem; height: 2rem; }
 .gondals-hero__arrow:hover { background: var(--gondals-teal); color: #fff; transform: translateY(-50%) scale(1.08); }
 @media screen and (min-width: 990px) { .gondals-hero__arrow { display: grid; } }
 .gondals-hero__arrow--prev { left: 2.4rem; }
 .gondals-hero__arrow--next { right: 2.4rem; }
-.gondals-hero__dots { position: absolute; bottom: 2rem; left: 0; right: 0; display: flex; justify-content: center; gap: 0.8rem; z-index: 2; }
-.gondals-hero__dot { width: 0.9rem; height: 0.9rem; border-radius: 99px; border: 0; padding: 0; cursor: pointer; background: rgba(255, 255, 255, 0.55); transition: width 0.3s var(--gondals-ease), background 0.3s; }
-.gondals-hero__dot.is-active { width: 3rem; background: var(--gondals-teal); }
+/* Dots: small visual pill, 2.4rem tall hit area */
+.gondals-hero__dots { position: absolute; bottom: 1.2rem; left: 0; right: 0; display: flex; justify-content: center; gap: 0.2rem; z-index: 2; }
+.gondals-hero__dot { position: relative; width: 2.4rem; height: 2.4rem; border: 0; padding: 0; cursor: pointer; background: none; border-radius: 99px; transition: width 0.3s var(--gondals-ease); }
+.gondals-hero__dot::before {
+  content: ''; position: absolute; left: 0.75rem; right: 0.75rem; top: 50%; height: 0.9rem; transform: translateY(-50%);
+  border-radius: 99px; background: rgba(255, 255, 255, 0.6); transition: background 0.3s;
+}
+.gondals-hero__dot:hover::before { background: #fff; }
+.gondals-hero__dot.is-active { width: 4.5rem; }
+.gondals-hero__dot.is-active::before { background: var(--gondals-teal); }
 
 /* ---------- Category circles ---------- */
 .gondals-cats { padding-top: var(--gc-pt); padding-bottom: var(--gc-pb); }
@@ -211,8 +224,11 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   transition: border-color 0.25s, box-shadow 0.25s, transform 0.3s var(--gondals-spring);
 }
 .gondals-cats__img img, .gondals-cats__img svg { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s var(--gondals-ease); }
-.gondals-cats__link:hover .gondals-cats__img { border-color: var(--gondals-teal); box-shadow: 0 0 0 4px rgba(48, 170, 189, 0.18); transform: translateY(-4px); }
-.gondals-cats__link:hover .gondals-cats__img img { transform: scale(1.08); }
+@media (hover: hover) {
+  .gondals-cats__link:hover .gondals-cats__img { border-color: var(--gondals-teal); box-shadow: 0 0 0 4px rgba(48, 170, 189, 0.18); transform: translateY(-4px); }
+  .gondals-cats__link:hover .gondals-cats__img img { transform: scale(1.08); }
+}
+.gondals-cats__link:active .gondals-cats__img { transform: scale(0.96); }
 .gondals-cats__label { font-weight: 600; font-size: 1.4rem; text-align: center; line-height: 1.3; transition: color 0.2s; }
 .gondals-cats__link:hover .gondals-cats__label { color: var(--gondals-teal-dark); }
 
@@ -250,11 +266,13 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   transition: box-shadow 0.25s var(--gondals-ease), transform 0.25s var(--gondals-ease), border-color 0.25s;
   height: 100%;
 }
-.product-card-wrapper:hover .card--card,
-.product-card-wrapper:hover .card--standard { box-shadow: var(--gondals-shadow); transform: translateY(-4px); border-color: transparent; }
+@media (hover: hover) {
+  .product-card-wrapper:hover .card--card,
+  .product-card-wrapper:hover .card--standard { box-shadow: var(--gondals-shadow); transform: translateY(-4px); border-color: transparent; }
+  .product-card-wrapper:hover .card__media .media img:first-child { transform: scale(1.06); }
+}
 .product-card-wrapper .card__inner { border-radius: 0; background: var(--gondals-soft); }
 .product-card-wrapper .card__media .media img { transition: transform 0.6s var(--gondals-ease), opacity 0.4s !important; }
-.product-card-wrapper:hover .card__media .media img:first-child { transform: scale(1.06); }
 .product-card-wrapper .card > .card__content { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; flex: 1 1 auto; }
 .product-card-wrapper .card--card { display: flex; flex-direction: column; }
 .product-card-wrapper .card__information { grid-row-start: auto; }
@@ -265,14 +283,14 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .product-card-wrapper .price { font-size: 1.6rem; font-weight: 700; color: var(--gondals-ink); }
 .product-card-wrapper .price .price-item--regular { color: var(--gondals-ink); }
 .product-card-wrapper .price--on-sale .price-item--sale { color: var(--gondals-ink); }
-.product-card-wrapper .price--on-sale s.price-item--regular { color: #9aa8ab; font-size: 1.3rem; font-weight: 400; }
+.product-card-wrapper .price--on-sale s.price-item--regular { color: var(--gondals-muted); font-size: 1.3rem; font-weight: 400; }
 .gondals-save {
-  display: inline-block; margin-top: 0.6rem; padding: 0.3rem 0.8rem; border-radius: 5px;
-  background: var(--gondals-green-bg); color: var(--gondals-green); font-size: 1.15rem; font-weight: 700;
+  display: inline-block; align-self: flex-start; margin-top: 0.6rem; padding: 0.3rem 0.8rem; border-radius: 5px;
+  background: var(--gondals-green-bg); color: var(--gondals-green-text); font-size: 1.2rem; font-weight: 700;
 }
 .card__badge { padding: 1rem; }
 .card__badge .badge {
-  background: var(--gondals-sale); color: #fff; border: 0; border-radius: 6px;
+  background: var(--gondals-sale-strong); color: #fff; border: 0; border-radius: 6px;
   font-size: 1.15rem; font-weight: 700; padding: 0.4rem 0.9rem; letter-spacing: 0.02rem;
 }
 .card__badge .badge.color-scheme-3 { background: var(--gondals-deep); }
@@ -298,7 +316,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 @media screen and (min-width: 750px) { .gondals-tiles { grid-template-columns: repeat(var(--gt-cols), minmax(0, 1fr)); gap: 2rem; } }
 .gondals-tile { position: relative; display: block; overflow: hidden; border-radius: var(--gondals-radius); min-height: 28rem; text-decoration: none; background: var(--gondals-deep); }
 .gondals-tile__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--gondals-ease); }
-.gondals-tile:hover .gondals-tile__img { transform: scale(1.06); }
+@media (hover: hover) { .gondals-tile:hover .gondals-tile__img { transform: scale(1.06); } }
 .gondals-tile__shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(0, 53, 61, 0.9) 0%, rgba(0, 53, 61, 0.15) 70%); }
 .gondals-tile__content { position: absolute; left: 2.6rem; right: 2.6rem; bottom: 2.4rem; color: #fff; display: flex; flex-direction: column; gap: 0.6rem; }
 .gondals-tile__eyebrow { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.12rem; text-transform: uppercase; color: var(--gondals-teal); }
@@ -343,8 +361,11 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .footer .newsletter-form__field-wrapper .field__input { border-radius: 99px; }
 
 /* ---------- Floating buttons ---------- */
+/* Stacking: both buttons share a base offset (raised above the sticky ATC bar);
+   back-to-top moves up when WhatsApp sits in the same corner. */
+body.gondals-has-sticky-atc { --gondals-float-base: 8.6rem; }
 .gondals-whatsapp {
-  position: fixed; bottom: 2rem; z-index: 90; width: 5.6rem; height: 5.6rem; border-radius: 50%;
+  position: fixed; bottom: var(--gondals-float-base); z-index: 90; width: 5.6rem; height: 5.6rem; border-radius: 50%;
   display: grid; place-items: center; background: #25d366; color: #fff; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
   transition: transform 0.25s var(--gondals-spring);
 }
@@ -353,7 +374,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .gondals-whatsapp--right { right: 2rem; }
 .gondals-whatsapp--left { left: 2rem; }
 .gondals-top {
-  position: fixed; left: 2rem; bottom: 2rem; z-index: 89; width: 4.6rem; height: 4.6rem; border-radius: 50%; border: 0; cursor: pointer;
+  position: fixed; left: 2rem; bottom: calc(var(--gondals-float-base) + var(--gondals-float-stack, 0rem)); z-index: 89; width: 4.6rem; height: 4.6rem; border-radius: 50%; border: 0; cursor: pointer;
   display: grid; place-items: center; background: var(--gondals-deep); color: #fff; box-shadow: 0 6px 18px rgba(0, 53, 61, 0.3);
   opacity: 0; pointer-events: none; transform: translateY(16px) scale(0.9);
   transition: opacity 0.3s, transform 0.35s var(--gondals-spring), background 0.2s;
@@ -362,8 +383,16 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .gondals-top:hover { background: var(--gondals-teal); }
 .gondals-top svg { width: 2.2rem; height: 2.2rem; }
 
+@media screen and (min-width: 750px) {
+  body:has(.gondals-whatsapp--left) .gondals-top { --gondals-float-stack: 6.8rem; left: 2.5rem; }
+}
 @media screen and (max-width: 749px) {
-  .gondals-top { width: 4rem; height: 4rem; left: auto; right: 1.6rem; bottom: 1.6rem; }
+  :root { --gondals-float-base: 1.6rem; }
+  .gondals-whatsapp { width: 5.2rem; height: 5.2rem; }
+  .gondals-whatsapp--right { right: 1.6rem; }
+  .gondals-whatsapp--left { left: 1.6rem; }
+  .gondals-top { width: 4.4rem; height: 4.4rem; left: auto; right: 2rem; }
+  body:has(.gondals-whatsapp--right) .gondals-top { --gondals-float-stack: 6.4rem; }
 }
 
 
@@ -375,11 +404,11 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .product .product__title h1 { font-size: clamp(2.6rem, 3vw, 3.4rem); font-weight: 800; line-height: 1.15; }
 .product .price--large { font-size: 2.8rem; font-weight: 800; color: var(--gondals-ink); }
 .product .price--large .price-item--sale { color: var(--gondals-ink); }
-.product .price--large s.price-item--regular { font-size: 1.7rem; font-weight: 400; color: #9aa8ab; }
+.product .price--large s.price-item--regular { font-size: 1.7rem; font-weight: 400; color: var(--gondals-muted); }
 .product .price__badge-sale, .product .price .badge { display: none; }
 .gondals-pdp-savings { display: flex; align-items: center; gap: 0.8rem; margin-top: 0.8rem; }
 .gondals-pdp-savings .gondals-save { margin-top: 0; font-size: 1.3rem; padding: 0.4rem 1rem; }
-.gondals-pdp-savings__pct { background: var(--gondals-sale); color: #fff; border-radius: 6px; font-size: 1.3rem; font-weight: 800; padding: 0.4rem 0.9rem; }
+.gondals-pdp-savings__pct { background: var(--gondals-sale-strong); color: #fff; border-radius: 6px; font-size: 1.3rem; font-weight: 800; padding: 0.4rem 0.9rem; }
 .product .product__tax { color: var(--gondals-muted); margin-top: 0.6rem; }
 
 /* Variant pills */
@@ -462,9 +491,10 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   .gondals-sticky-atc__media { display: none; }
   .gondals-sticky-atc__btn { padding: 0 1.6rem; }
 }
-body.gondals-has-sticky-atc .gondals-top,
-body.gondals-has-sticky-atc .gondals-whatsapp { bottom: 8.6rem; }
 .gondals-top, .gondals-whatsapp { transition-property: opacity, transform, background, bottom; }
+.gondals-sticky-atc__inner { padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); }
+/* Keep the footer's last lines reachable while the bar is shown */
+body.gondals-has-sticky-atc { padding-bottom: 7.2rem; }
 
 /* Related products */
 .related-products .related-products__heading { font-weight: 800; }
@@ -492,10 +522,23 @@ body.gondals-has-sticky-atc .gondals-whatsapp { bottom: 8.6rem; }
   transition: width 0.6s var(--gondals-ease), background 0.3s var(--gondals-ease);
 }
 .gondals-freeship.is-unlocked { background: var(--gondals-green-bg); border-color: transparent; }
-.gondals-freeship.is-unlocked .gondals-freeship__text { color: var(--gondals-green); font-weight: 600; }
+.gondals-freeship.is-unlocked .gondals-freeship__text { color: var(--gondals-green-text); font-weight: 600; }
 .gondals-freeship.is-unlocked .gondals-freeship__fill { background: var(--gondals-green); }
 .drawer__header + .gondals-freeship { margin-top: -0.4rem; }
 .cart__items .gondals-freeship { max-width: 56rem; margin-bottom: 2.4rem; }
+
+/* ---------- Keyboard focus ----------
+   Dawn's default ring uses the scheme foreground, which disappears on
+   dark hero/tile imagery. A white+teal double ring reads on any surface. */
+.gondals-hero__arrow:focus-visible, .gondals-hero__dot:focus-visible, .gondals-hero__btn:focus-visible,
+.gondals-row__arrow:focus-visible, .gondals-pill:focus-visible, .gondals-tile:focus-visible,
+.gondals-cats__link:focus-visible, .gondals-top:focus-visible, .gondals-whatsapp:focus-visible,
+.gondals-buy-now__button:focus-visible, .gondals-sticky-atc__btn:focus-visible {
+  outline: 0; box-shadow: var(--gondals-focus);
+}
+.gondals-cats__link:focus-visible { box-shadow: none; }
+.gondals-cats__link:focus-visible .gondals-cats__img { border-color: var(--gondals-teal-dark); box-shadow: var(--gondals-focus); }
+.gondals-tile:focus-visible { outline: 3px solid var(--gondals-teal); outline-offset: 3px; box-shadow: none; }
 
 /* ---------- Motion safety ---------- */
 @media (prefers-reduced-motion: reduce) {
@@ -505,4 +548,6 @@ body.gondals-has-sticky-atc .gondals-whatsapp { bottom: 8.6rem; }
   .gondals-hero__box > * { opacity: 1; }
   .gondals-sticky-atc { transition: none; }
   .gondals-freeship__fill { transition: none; }
+  .gondals-top, .gondals-whatsapp, .gondals-hero__dot, .gondals-hero__arrow, .gondals-trust__icon { transition: none; }
+  .gondals-trust__item:hover .gondals-trust__icon { transform: none; }
 }

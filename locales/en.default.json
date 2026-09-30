@@ -537,6 +537,7 @@
     "back_to_top": "Back to top",
     "prev": "Previous",
     "next": "Next",
+    "go_to_slide": "Go to slide {{ index }}",
     "delivery_label": "Estimated delivery:",
     "delivery_fallback": "in {{ min }}–{{ max }} business days",
     "trust_shipping": "Free shipping from €49",

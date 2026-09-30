@@ -7,7 +7,15 @@
           {%- if forloop.first -%}{%- assign hero_loading = 'eager' -%}{%- else -%}{%- assign hero_loading = 'lazy' -%}{%- endif -%}
           {{ block.settings.image | image_url: width: 2400 | image_tag: class: 'gondals-hero__img', widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: hero_loading }}
         {%- elsif block.settings.image_url != blank -%}
-          <img class="gondals-hero__img" src="{{ block.settings.image_url }}&w=2000" srcset="{{ block.settings.image_url }}&w=800 800w, {{ block.settings.image_url }}&w=1400 1400w, {{ block.settings.image_url }}&w=2000 2000w" sizes="100vw" alt="" width="2000" height="900" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
+          {%- liquid
+            assign img_url = block.settings.image_url
+            if img_url contains '?'
+              assign img_sep = '&'
+            else
+              assign img_sep = '?'
+            endif
+          -%}
+          <img class="gondals-hero__img" src="{{ img_url }}{{ img_sep }}w=2000" srcset="{{ img_url }}{{ img_sep }}w=800 800w, {{ img_url }}{{ img_sep }}w=1400 1400w, {{ img_url }}{{ img_sep }}w=2000 2000w" sizes="100vw" alt="" width="2000" height="900" {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>
         {%- endif -%}
         <div class="gondals-hero__overlay" style="--overlay: {{ block.settings.overlay | divided_by: 100.0 }};"></div>
         <div class="gondals-hero__content page-width">
@@ -24,11 +32,11 @@
     {%- endfor -%}
   </div>
   {%- if section.blocks.size > 1 -%}
-    <button type="button" class="gondals-hero__arrow gondals-hero__arrow--prev" aria-label="Previous slide">&#8249;</button>
-    <button type="button" class="gondals-hero__arrow gondals-hero__arrow--next" aria-label="Next slide">&#8250;</button>
+    <button type="button" class="gondals-hero__arrow gondals-hero__arrow--prev" aria-label="{{ 'gondals.prev' | t }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+    <button type="button" class="gondals-hero__arrow gondals-hero__arrow--next" aria-label="{{ 'gondals.next' | t }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
     <div class="gondals-hero__dots">
       {%- for block in section.blocks -%}
-        <button type="button" class="gondals-hero__dot{% if forloop.first %} is-active{% endif %}" aria-label="Go to slide {{ forloop.index }}"></button>
+        <button type="button" class="gondals-hero__dot{% if forloop.first %} is-active{% endif %}" aria-label="{{ 'gondals.go_to_slide' | t: index: forloop.index }}"{% if forloop.first %} aria-current="true"{% endif %}></button>
       {%- endfor -%}
     </div>
   {%- endif -%}
@@ -43,26 +51,37 @@
     var slides = root.querySelectorAll('.gondals-hero__slide');
     var dots = root.querySelectorAll('.gondals-hero__dot');
     if (slides.length < 2) return;
-    var i = 0, timer;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var i = 0, timer, hovered = false, focused = false;
     function go(n) {
       i = (n + slides.length) % slides.length;
-      track.scrollTo({ left: slides[i].offsetLeft, behavior: 'smooth' });
+      track.scrollTo({ left: slides[i].offsetLeft, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
     }
     track.addEventListener('scroll', function () {
       var n = Math.round(track.scrollLeft / track.clientWidth);
       if (n !== i) i = n;
-      dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
+      dots.forEach(function (d, k) {
+        d.classList.toggle('is-active', k === i);
+        if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
       slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
     }, { passive: true });
     dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); restart(); }); });
     root.querySelector('.gondals-hero__arrow--prev').addEventListener('click', function () { go(i - 1); restart(); });
     root.querySelector('.gondals-hero__arrow--next').addEventListener('click', function () { go(i + 1); restart(); });
+    // Auto-rotate only when nobody is reading/interacting, the tab is visible and motion is allowed
     function restart() {
       clearInterval(timer);
-      if (root.dataset.autoplay === 'true') timer = setInterval(function () { go(i + 1); }, (parseInt(root.dataset.speed, 10) || 5) * 1000);
+      if (root.dataset.autoplay !== 'true' || hovered || focused || document.hidden || reduceMotion.matches) return;
+      timer = setInterval(function () { go(i + 1); }, (parseInt(root.dataset.speed, 10) || 5) * 1000);
     }
-    root.addEventListener('mouseenter', function () { clearInterval(timer); });
-    root.addEventListener('mouseleave', restart);
+    root.addEventListener('mouseenter', function () { hovered = true; restart(); });
+    root.addEventListener('mouseleave', function () { hovered = false; restart(); });
+    root.addEventListener('focusin', function () { focused = true; restart(); });
+    root.addEventListener('focusout', function (e) { if (!root.contains(e.relatedTarget)) { focused = false; restart(); } });
+    track.addEventListener('touchstart', function () { clearInterval(timer); }, { passive: true });
+    track.addEventListener('touchend', restart, { passive: true });
+    document.addEventListener('visibilitychange', restart);
     restart();
   })();
 </script>

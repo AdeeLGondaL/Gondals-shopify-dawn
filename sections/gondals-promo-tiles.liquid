@@ -6,7 +6,8 @@
         {%- if block.settings.image != blank -%}
           {{ block.settings.image | image_url: width: 1200 | image_tag: class: 'gondals-tile__img', loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw', widths: '600, 900, 1200' }}
         {%- elsif block.settings.image_url != blank -%}
-          <img class="gondals-tile__img" src="{{ block.settings.image_url }}&w=1200" alt="" loading="lazy" width="1200" height="800">
+          {%- if block.settings.image_url contains '?' -%}{%- assign img_sep = '&' -%}{%- else -%}{%- assign img_sep = '?' -%}{%- endif -%}
+          <img class="gondals-tile__img" src="{{ block.settings.image_url }}{{ img_sep }}w=1200" alt="" loading="lazy" width="1200" height="800">
         {%- endif -%}
         <span class="gondals-tile__shade"></span>
         <span class="gondals-tile__content">
