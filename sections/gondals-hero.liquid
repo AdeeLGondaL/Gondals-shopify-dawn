@@ -2,7 +2,7 @@
 <div class="gondals-hero{% if section.settings.full_width == false %} page-width{% endif %}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.speed }}">
   <div class="gondals-hero__track" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.aria_label | escape }}">
     {%- for block in section.blocks -%}
-      <div class="gondals-hero__slide gondals-hero__slide--{{ block.settings.align }}" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} / {{ forloop.length }}" {{ block.shopify_attributes }}>
+      <div class="gondals-hero__slide gondals-hero__slide--{{ block.settings.align }}{% if forloop.first %} is-active{% endif %}" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} / {{ forloop.length }}" {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
           {%- if forloop.first -%}{%- assign hero_loading = 'eager' -%}{%- else -%}{%- assign hero_loading = 'lazy' -%}{%- endif -%}
           {{ block.settings.image | image_url: width: 2400 | image_tag: class: 'gondals-hero__img', widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: hero_loading }}
@@ -52,6 +52,7 @@
       var n = Math.round(track.scrollLeft / track.clientWidth);
       if (n !== i) i = n;
       dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
+      slides.forEach(function (s, k) { s.classList.toggle('is-active', k === i); });
     }, { passive: true });
     dots.forEach(function (d, k) { d.addEventListener('click', function () { go(k); restart(); }); });
     root.querySelector('.gondals-hero__arrow--prev').addEventListener('click', function () { go(i - 1); restart(); });

@@ -235,6 +235,10 @@
               {%- endif -%}
 
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+              {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
+                {%- assign gondals_save = card_product.compare_at_price | minus: card_product.price | money -%}
+                <span class="gondals-save">{{ 'gondals.save' | t: amount: gondals_save }}</span>
+              {%- endif -%}
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid

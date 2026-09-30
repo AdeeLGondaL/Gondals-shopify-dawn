@@ -1,0 +1,14 @@
+<button type="button" class="gondals-top" aria-label="{{ 'gondals.back_to_top' | t }}" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+</button>
+<script>
+  (function () {
+    var b = document.querySelector('.gondals-top');
+    if (!b) return;
+    var on = false;
+    window.addEventListener('scroll', function () {
+      var s = window.scrollY > 700;
+      if (s !== on) { on = s; b.classList.toggle('is-visible', s); }
+    }, { passive: true });
+  })();
+</script>

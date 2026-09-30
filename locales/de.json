@@ -531,6 +531,11 @@
   "gondals": {
     "buy_now": "Jetzt kaufen",
     "choose_options": "Optionen wählen",
-    "whatsapp": "Schreib uns auf WhatsApp"
+    "whatsapp": "Schreib uns auf WhatsApp",
+    "save": "Du sparst {{ amount }}",
+    "view_all": "Alle ansehen",
+    "back_to_top": "Nach oben",
+    "prev": "Zurück",
+    "next": "Weiter"
   }
 }

@@ -7,7 +7,7 @@
           "type": "slide",
           "settings": {
             "image_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?fit=crop&q=80&fm=jpg&ar=21:9",
-            "overlay": 30,
+            "overlay": 25,
             "align": "left",
             "eyebrow": "New season",
             "heading": "Make your home feel like you",
@@ -20,7 +20,7 @@
           "type": "slide",
           "settings": {
             "image_url": "https://images.unsplash.com/photo-1556911220-bff31c812dba?fit=crop&q=80&fm=jpg&ar=21:9",
-            "overlay": 30,
+            "overlay": 25,
             "align": "left",
             "eyebrow": "Up to 30% off",
             "heading": "Kitchen & storage essentials",
@@ -33,7 +33,7 @@
           "type": "slide",
           "settings": {
             "image_url": "https://images.unsplash.com/photo-1628483212179-49f29440423e?fit=crop&q=80&fm=jpg&ar=21:9",
-            "overlay": 35,
+            "overlay": 25,
             "align": "left",
             "eyebrow": "Genuine leather",
             "heading": "Leather that ages beautifully",
@@ -108,36 +108,20 @@
       "settings": {
         "title": "Shop by category",
         "color_scheme": "scheme-1",
-        "padding_top": 44,
-        "padding_bottom": 20
+        "padding_top": 48,
+        "padding_bottom": 16
       }
     },
     "bestsellers": {
-      "type": "featured-collection",
+      "type": "gondals-product-row",
       "settings": {
+        "eyebrow": "Customer favourites",
         "title": "Top selling",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 32,
-        "padding_bottom": 32
+        "padding_top": 36,
+        "padding_bottom": 24
       }
     },
     "promos": {
@@ -175,87 +159,42 @@
       }
     },
     "essentials": {
-      "type": "featured-collection",
+      "type": "gondals-product-row",
       "settings": {
+        "eyebrow": "Everyday helpers",
         "title": "Home Essentials",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "home-essentials",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-2",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
-    "decor": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Home Decor",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "home-decor",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 32,
-        "padding_bottom": 32
+        "padding_top": 36,
+        "padding_bottom": 24,
+        "collection": "home-essentials"
+      }
+    },
+    "decor": {
+      "type": "gondals-product-row",
+      "settings": {
+        "eyebrow": "Style your space",
+        "title": "Home Decor",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 24,
+        "collection": "home-decor"
       }
     },
     "leather": {
-      "type": "featured-collection",
+      "type": "gondals-product-row",
       "settings": {
+        "eyebrow": "Built to last",
         "title": "Leather Accessories",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "leather-accessories",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-2",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "link",
-        "enable_desktop_slider": true,
-        "swipe_on_mobile": true,
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 32,
-        "padding_bottom": 32
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 24,
+        "collection": "leather-accessories"
       }
     },
     "trust": {
@@ -301,9 +240,9 @@
         "t4"
       ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "color_scheme": "scheme-2",
+        "padding_top": 44,
+        "padding_bottom": 44
       }
     },
     "newsletter": {
@@ -338,6 +277,59 @@
         "padding_top": 48,
         "padding_bottom": 56
       }
+    },
+    "ticker": {
+      "type": "gondals-ticker",
+      "blocks": {
+        "k0": {
+          "type": "item",
+          "settings": {
+            "text": "Free shipping from €49"
+          }
+        },
+        "k1": {
+          "type": "item",
+          "settings": {
+            "text": "14-day returns"
+          }
+        },
+        "k2": {
+          "type": "item",
+          "settings": {
+            "text": "Secure checkout"
+          }
+        },
+        "k3": {
+          "type": "item",
+          "settings": {
+            "text": "Marble & granite mosaics"
+          }
+        },
+        "k4": {
+          "type": "item",
+          "settings": {
+            "text": "Genuine leather"
+          }
+        },
+        "k5": {
+          "type": "item",
+          "settings": {
+            "text": "Shipping across the EU"
+          }
+        }
+      },
+      "block_order": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5"
+      ],
+      "settings": {
+        "color_scheme": "scheme-3",
+        "speed": 35
+      }
     }
   },
   "order": [
@@ -345,6 +337,7 @@
     "categories",
     "bestsellers",
     "promos",
+    "ticker",
     "essentials",
     "decor",
     "leather",

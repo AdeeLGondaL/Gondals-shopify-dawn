@@ -1,0 +1,86 @@
+{%- comment -%} Saamaan-style product row: eyebrow, bold title, "View all" pill, swipeable slider with arrows. {%- endcomment -%}
+{%- liquid
+  assign collection = section.settings.collection
+  assign limit = section.settings.products_to_show
+  if collection == blank
+    assign products_list = collections.all.products
+    assign view_all_url = routes.all_products_collection_url
+  else
+    assign products_list = collection.products
+    assign view_all_url = collection.url
+  endif
+-%}
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="gondals-row page-width" style="--gr-pt: {{ section.settings.padding_top }}px; --gr-pb: {{ section.settings.padding_bottom }}px; --gr-cols: {{ section.settings.columns_desktop }};">
+    <div class="gondals-row__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}<p class="gondals-eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h2 class="gondals-row__title">{{ section.settings.title | escape }}</h2>
+      </div>
+      <div class="gondals-row__actions">
+        <a href="{{ view_all_url }}" class="gondals-pill">{{ 'gondals.view_all' | t }} <span aria-hidden="true">&rarr;</span></a>
+        <button type="button" class="gondals-row__arrow" data-dir="-1" aria-label="{{ 'gondals.prev' | t }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 6-6 6 6 6"/></svg></button>
+        <button type="button" class="gondals-row__arrow" data-dir="1" aria-label="{{ 'gondals.next' | t }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <ul class="gondals-row__track" role="list">
+      {%- for product in products_list limit: limit -%}
+        <li class="gondals-row__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if settings.animations_reveal_on_scroll %} data-cascade style="--animation-order: {{ forloop.index }};"{% endif %}>
+          {% render 'card-product',
+            card_product: product,
+            media_aspect_ratio: 'square',
+            image_shape: 'default',
+            show_secondary_image: true,
+            show_vendor: false,
+            show_rating: false,
+            section_id: section.id,
+            quick_add: 'none'
+          %}
+        </li>
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <li class="gondals-row__item">{% render 'card-product', show_vendor: false %}</li>
+        {%- endfor -%}
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    var track = root.querySelector('.gondals-row__track');
+    root.querySelectorAll('.gondals-row__arrow').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        track.scrollBy({ left: track.clientWidth * 0.9 * parseInt(btn.dataset.dir, 10), behavior: 'smooth' });
+      });
+    });
+    function update() {
+      var arrows = root.querySelectorAll('.gondals-row__arrow');
+      arrows[0].disabled = track.scrollLeft < 8;
+      arrows[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 8;
+    }
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product row",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Just dropped" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Latest collection" },
+    { "type": "collection", "id": "collection", "label": "Collection", "info": "Leave empty to show all products." },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 16, "step": 1, "label": "Products", "default": 8 },
+    { "type": "range", "id": "columns_desktop", "min": 3, "max": 5, "step": 1, "label": "Visible on desktop", "default": 4 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 36 }
+  ],
+  "presets": [{ "name": "Product row" }]
+}
+{% endschema %}
