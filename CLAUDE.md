@@ -49,10 +49,11 @@ Design reference: saamaan.pk (layout and UX only; Gondals keeps its own colors a
 | `sections/main-product.liquid` | Dawn + blocks `gondals_delivery`, `gondals_trust`, savings under price, sticky ATC |
 | `snippets/card-product.liquid` | Dawn + `-%` badge, savings pill, Buy now button, placeholder image fallback |
 | `snippets/gondals-*.liquid` | logo, whatsapp (hidden until number set), back-to-top, delivery, pdp-trust, savings, sticky-atc, placeholder-gallery |
+| `snippets/gondals-free-shipping.liquid` + `assets/gondals-free-shipping.js` | Free-shipping progress bar in cart drawer and cart page (threshold setting, animated fill) |
 | `sections/header.liquid` | Uses stacked logo; layout is saamaan-style (search left, logo center, icons right, nav row below) via CSS |
 | `scripts/validate-settings.py` | Validates JSON settings against section schemas |
 
-Theme settings group **Gondals** (`config/settings_schema.json`): Buy now toggle, WhatsApp number/message/position.
+Theme settings group **Gondals** (`config/settings_schema.json`): Buy now toggle, free shipping threshold, WhatsApp number/message/position.
 Locale strings live under the `gondals` key in `locales/en.default.json` and `locales/de.json` (keep both in sync).
 
 ## Placeholder content (replace before launch)
@@ -70,7 +71,6 @@ Locale strings live under the `gondals` key in `locales/en.default.json` and `lo
 ## Backlog
 
 1. Collection page (filters, sorting, grid styling)
-2. Cart drawer with free-shipping progress bar
-3. Legal pages skeleton linked in footer
-4. Real hero/collection images once on a paid plan; remove placeholder products
-5. Domain (recommended: gondals.de)
+2. Legal pages skeleton linked in footer
+3. Real hero/collection images once on a paid plan; remove placeholder products
+4. Domain (recommended: gondals.de)
