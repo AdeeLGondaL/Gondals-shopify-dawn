@@ -591,6 +591,127 @@ body.gondals-has-sticky-atc { padding-bottom: 7.2rem; }
 .cart-item__name { font-weight: 600; }
 .cart__items .gondals-freeship { max-width: 56rem; margin-bottom: 2.4rem; }
 
+/* =========================================================
+   Collection page
+   Polaris-style: muted header container, 1px borders, calm motion
+   ========================================================= */
+.gondals-coll-head {
+  padding-block: var(--gch-pt, 32px) var(--gch-pb, 24px);
+  border-bottom: 1px solid var(--gondals-line);
+  background: var(--gondals-soft);
+}
+.gondals-coll-head__inner { display: grid; gap: 2.4rem; align-items: center; }
+@media screen and (min-width: 990px) {
+  .gondals-coll-head__inner--media { grid-template-columns: minmax(0, 1fr) 36rem; gap: 4.8rem; }
+}
+.gondals-coll-head__text { min-width: 0; }
+.gondals-coll-head__media img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border: 1px solid var(--gondals-line); border-radius: 12px; background: #fff;
+}
+
+.gondals-crumbs__list {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem;
+  margin: 0 0 1.2rem; padding: 0; list-style: none;
+  font-size: 1.3rem; line-height: 1.4; color: var(--gondals-muted);
+}
+.gondals-crumbs__item { display: inline-flex; align-items: center; gap: 0.6rem; }
+.gondals-crumbs__item + .gondals-crumbs__item::before { content: '/'; color: #a3b1b4; }
+.gondals-crumbs__link { color: var(--gondals-muted); text-decoration: none; transition: color 0.15s var(--gondals-ease); }
+.gondals-crumbs__link:hover { color: var(--gondals-deep); }
+.gondals-crumbs [aria-current] { color: var(--gondals-ink); font-weight: 500; }
+
+.gondals-coll-head__title {
+  margin: 0;
+  font-size: clamp(2.6rem, 3vw, 3.6rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--gondals-deep);
+}
+.gondals-coll-head__desc {
+  max-width: 64rem; margin-top: 1rem;
+  font-size: 1.5rem; line-height: 1.6; color: var(--gondals-muted);
+}
+.gondals-coll-head__desc > :first-child { margin-top: 0; }
+.gondals-coll-head__desc > :last-child { margin-bottom: 0; }
+
+/* Sub-category chips */
+.gondals-chips { margin-top: 2rem; }
+.gondals-chips__list {
+  display: flex; gap: 0.8rem; margin: 0; padding: 0.2rem; list-style: none;
+  overflow-x: auto; scrollbar-width: none;
+}
+.gondals-chips__list::-webkit-scrollbar { display: none; }
+@media screen and (min-width: 750px) { .gondals-chips__list { flex-wrap: wrap; overflow: visible; } }
+.gondals-chip {
+  display: inline-flex; align-items: center; min-height: 4rem; padding-inline: 1.6rem;
+  border: 1px solid var(--gondals-line); border-radius: 8px;
+  font-size: 1.4rem; font-weight: 500; line-height: 1; white-space: nowrap; color: var(--gondals-ink); text-decoration: none;
+  background: #fff;
+  transition: border-color 0.2s var(--gondals-ease), color 0.2s var(--gondals-ease), background-color 0.2s var(--gondals-ease);
+}
+.gondals-chip:hover { border-color: var(--gondals-teal-dark); color: var(--gondals-deep); }
+.gondals-chip--active, .gondals-chip--active:hover { border-color: var(--gondals-deep); color: #fff; background: var(--gondals-deep); }
+.gondals-chip:focus-visible { outline: 0; box-shadow: var(--gondals-focus); }
+
+/* Toolbar: sort + count */
+.facets-vertical-sort { padding-block: 0.4rem 1.6rem; }
+.facet-filters__label { font-size: 1.4rem; color: var(--gondals-muted); }
+.facet-filters__sort { font-size: 1.4rem; font-weight: 600; color: var(--gondals-deep); }
+.product-count__text, .product-count-vertical .product-count__text { font-size: 1.4rem; color: var(--gondals-muted); }
+
+/* Sidebar filters */
+@media screen and (min-width: 750px) {
+  .facets__form-vertical { width: 24rem; }
+  .facets-vertical .facets-wrapper { padding-inline-end: 3.2rem; }
+}
+.facets__heading--vertical { font-size: 1.5rem; font-weight: 700; letter-spacing: 0; color: var(--gondals-deep); }
+.facets__disclosure-vertical { border-top: 1px solid var(--gondals-line); }
+.facets__disclosure-vertical:last-of-type { border-bottom: 1px solid var(--gondals-line); }
+.facets-vertical .facets__summary { font-size: 1.45rem; font-weight: 600; color: var(--gondals-ink); }
+.facets__summary:hover { color: var(--gondals-deep); }
+.facets__summary:hover .facets__summary-label { text-decoration: none; }
+.facets__summary .icon-caret { transition: transform 0.2s var(--gondals-ease); }
+details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
+.facet-checkbox { font-size: 1.4rem; color: var(--gondals-ink); }
+.facet-checkbox__text-label + span, .facet-checkbox .facet-checkbox__text { color: var(--gondals-ink); }
+.facet-checkbox input[type='checkbox'] { accent-color: var(--gondals-deep); }
+.facets__reset, .active-facets__button-remove { font-size: 1.3rem; color: var(--gondals-teal-dark); }
+
+/* Active filter chips */
+.active-facets__button-inner {
+  min-height: 3.4rem; padding-inline: 1.2rem;
+  border: 1px solid var(--gondals-line); border-radius: 8px; box-shadow: none;
+  font-size: 1.3rem; color: var(--gondals-ink); background: var(--gondals-soft);
+  transition: border-color 0.2s var(--gondals-ease);
+}
+.active-facets__button-inner::before, .active-facets__button-inner::after { box-shadow: none; border-radius: 8px; }
+.active-facets__button:hover .active-facets__button-inner { border-color: var(--gondals-teal-dark); }
+
+/* Mobile filter trigger */
+.mobile-facets__open {
+  min-height: 4.4rem; padding-inline: 1.4rem;
+  border: 1px solid var(--gondals-line); border-radius: 8px;
+  font-weight: 600; color: var(--gondals-deep); background: #fff;
+}
+.mobile-facets__open:hover { border-color: var(--gondals-teal-dark); }
+.mobile-facets__header, .mobile-facets__footer { border-color: var(--gondals-line); }
+
+/* Empty state */
+.collection--empty .title-wrapper {
+  margin-block: 2.4rem; padding: 5.6rem 2.4rem;
+  border: 1px dashed var(--gondals-line); border-radius: 12px; background: var(--gondals-soft);
+}
+.collection--empty .title--primary { font-size: 1.8rem; font-weight: 600; line-height: 1.5; color: var(--gondals-deep); }
+
+/* Pagination */
+.pagination__list { gap: 0.4rem; }
+.pagination__item {
+  min-width: 4rem; height: 4rem; border: 1px solid transparent; border-radius: 8px;
+  color: var(--gondals-ink); text-decoration: none;
+  transition: border-color 0.2s var(--gondals-ease), background-color 0.2s var(--gondals-ease);
+}
+.pagination__item:hover { border-color: var(--gondals-line); }
+.pagination__item--current, .pagination__item--current:hover { color: #fff; background: var(--gondals-deep); }
+.pagination__item--current::after, .pagination__item:hover::after { display: none; }
+
 /* ---------- Liquid fill hover (saamaan) ----------
    An oversized ellipse waits above the button, drops in on hover to flood it
    with the inverse colour, and continues out the bottom on leave

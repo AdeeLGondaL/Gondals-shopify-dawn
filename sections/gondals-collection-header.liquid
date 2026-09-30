@@ -1,0 +1,143 @@
+{%- comment -%}
+  Collection page header: breadcrumb, title, description and sub-category chips.
+  Chips come from the menu link that points to this collection (e.g. Home Decor ->
+  Wall Art, Lighting, Vases, Mosaics), so they stay in sync with the header menu.
+{%- endcomment -%}
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+  assign parent_link = nil
+  for link in menu.links
+    if link.type == 'collection_link' and link.object.id == collection.id
+      assign parent_link = link
+      break
+    endif
+    if link.url == collection.url
+      assign parent_link = link
+      break
+    endif
+  endfor
+
+  assign active_child = nil
+  if parent_link and parent_link.links.size > 0
+    for child in parent_link.links
+      if child.url == request.path or child.current
+        assign active_child = child
+      endif
+    endfor
+  endif
+
+  assign has_image = false
+  if section.settings.show_image and collection.image
+    assign has_image = true
+  endif
+-%}
+
+<div
+  class="gondals-coll-head color-{{ section.settings.color_scheme }}"
+  style="--gch-pt: {{ section.settings.padding_top }}px; --gch-pb: {{ section.settings.padding_bottom }}px;"
+>
+  <div class="gondals-coll-head__inner page-width{% if has_image %} gondals-coll-head__inner--media{% endif %}">
+    <div class="gondals-coll-head__text">
+      {%- if section.settings.show_breadcrumb -%}
+        <nav class="gondals-crumbs" aria-label="{{ 'gondals.collection.breadcrumb' | t }}">
+          <ol class="gondals-crumbs__list" role="list">
+            <li class="gondals-crumbs__item">
+              <a class="gondals-crumbs__link" href="{{ routes.root_url }}">{{ 'gondals.collection.home' | t }}</a>
+            </li>
+            <li class="gondals-crumbs__item">
+              {%- if active_child -%}
+                <a class="gondals-crumbs__link" href="{{ collection.url }}">{{ collection.title | escape }}</a>
+              {%- else -%}
+                <span aria-current="page">{{ collection.title | escape }}</span>
+              {%- endif -%}
+            </li>
+            {%- if active_child -%}
+              <li class="gondals-crumbs__item"><span aria-current="page">{{ active_child.title | escape }}</span></li>
+            {%- endif -%}
+          </ol>
+        </nav>
+      {%- endif -%}
+
+      <h1 class="gondals-coll-head__title">
+        {%- if active_child -%}{{ active_child.title | escape }}{%- else -%}{{ collection.title | escape }}{%- endif -%}
+      </h1>
+
+      {%- if section.settings.show_description and collection.description != blank -%}
+        <div class="gondals-coll-head__desc rte">{{ collection.description }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- if has_image -%}
+      <div class="gondals-coll-head__media">
+        {{
+          collection.image
+          | image_url: width: 900
+          | image_tag: widths: '450, 600, 900', sizes: '(min-width: 990px) 360px, 100vw', alt: '', loading: 'eager'
+        }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_subcategories and parent_link and parent_link.links.size > 0 -%}
+    <div class="page-width">
+      <nav class="gondals-chips" aria-label="{{ 'gondals.collection.subcategories' | t }}">
+        <ul class="gondals-chips__list" role="list">
+          <li>
+            <a
+              class="gondals-chip{% unless active_child %} gondals-chip--active{% endunless %}"
+              href="{{ collection.url }}"
+              {% unless active_child %}
+                aria-current="page"
+              {% endunless %}
+            >
+              {{- 'gondals.collection.all' | t -}}
+            </a>
+          </li>
+          {%- for child in parent_link.links -%}
+            {%- assign is_active = false -%}
+            {%- if active_child and child.url == active_child.url -%}
+              {%- assign is_active = true -%}
+            {%- endif -%}
+            <li>
+              <a
+                class="gondals-chip{% if is_active %} gondals-chip--active{% endif %}"
+                href="{{ child.url }}"
+                {% if is_active %}
+                  aria-current="page"
+                {% endif %}
+              >
+                {{- child.title | escape -}}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collection header",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": { "templates": ["collection"] },
+  "settings": [
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "checkbox", "id": "show_image", "label": "Show collection image", "default": true },
+    { "type": "checkbox", "id": "show_subcategories", "label": "Show sub-category links", "default": true },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Sub-category source menu",
+      "info": "Sub-categories are the child links of the menu item that points to this collection.",
+      "default": "main-menu"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Top padding", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Bottom padding", "default": 24 }
+  ],
+  "presets": [{ "name": "Collection header" }]
+}
+{% endschema %}

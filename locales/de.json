@@ -538,6 +538,12 @@
     "prev": "Zurück",
     "next": "Weiter",
     "go_to_slide": "Zu Folie {{ index }}",
+    "collection": {
+      "breadcrumb": "Brotkrümelnavigation",
+      "home": "Startseite",
+      "all": "Alle",
+      "subcategories": "Unterkategorien"
+    },
     "delivery_label": "Voraussichtliche Lieferung:",
     "delivery_fallback": "in {{ min }}–{{ max }} Werktagen",
     "trust_shipping": "Kostenloser Versand ab 49 €",
