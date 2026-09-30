@@ -5,7 +5,7 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-4",
         "show_line_separator": false,
         "show_social": false,
         "auto_rotate": true,
@@ -19,7 +19,7 @@
           "settings": {
             "text": "Free shipping in Germany on orders over €49",
             "text_alignment": "center",
-            "color_scheme": "scheme-3",
+            "color_scheme": "scheme-4",
             "link": ""
           }
         },
@@ -28,7 +28,7 @@
           "settings": {
             "text": "14-day returns · Secure checkout",
             "text_alignment": "center",
-            "color_scheme": "scheme-3",
+            "color_scheme": "scheme-4",
             "link": ""
           }
         }
@@ -41,19 +41,19 @@
     "header": {
       "type": "header",
       "settings": {
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
+        "menu_color_scheme": "scheme-3",
         "logo_position": "middle-left",
         "menu": "main-menu",
         "menu_type_desktop": "mega",
         "sticky_header_type": "always",
-        "show_line_separator": true,
+        "show_line_separator": false,
         "enable_country_selector": true,
         "enable_language_selector": true,
         "mobile_logo_position": "center",
         "margin_bottom": 0,
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 14,
+        "padding_bottom": 14
       }
     }
   },

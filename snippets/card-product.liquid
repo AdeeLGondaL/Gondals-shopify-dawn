@@ -41,22 +41,27 @@
     endif
   -%}
 
+  {%- comment -%} Placeholder images (external URLs) used until real product media is uploaded {%- endcomment -%}
+  {%- liquid
+    assign gph = card_product.metafields.gondals.placeholder_images.value
+    assign gph_first = gph | first
+  -%}
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
     <div class="card-wrapper product-card-wrapper underline-links-hover">
       <div
         class="
           card card--{{ settings.card_style }}
-          {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
+          {% if card_product.featured_media or gph_first %} card--media{% else %} card--text{% endif %}
           {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
           {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
           {% if extend_height %} card--extend-height{% endif %}
-          {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}
+          {% if card_product.featured_media == nil and gph_first == blank and settings.card_style == 'card' %} ratio{% endif %}
           {% if horizontal_class %} card--horizontal{% endif %}
         "
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         <div
-          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+          class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or gph_first or settings.card_style == 'standard' %} ratio{% endif %}"
           style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
         >
           {%- if card_product.featured_media -%}
@@ -107,12 +112,35 @@
                 {%- endif -%}
               </div>
             </div>
+          {%- elsif gph_first != blank -%}
+            <div class="card__media">
+              <div class="media media--transparent media--hover-effect">
+                <img
+                  src="{{ gph_first }}&w=720"
+                  alt="{{ card_product.title | escape }}"
+                  class="motion-reduce"
+                  loading="lazy"
+                  width="720"
+                  height="720"
+                >
+                {%- if gph.size > 1 and show_secondary_image -%}
+                  <img
+                    src="{{ gph[1] }}&w=720"
+                    alt="{{ card_product.title | escape }}"
+                    class="motion-reduce"
+                    loading="lazy"
+                    width="720"
+                    height="720"
+                  >
+                {%- endif -%}
+              </div>
+            </div>
           {%- endif -%}
           <div class="card__content">
             <div class="card__information">
               <h3
                 class="card__heading"
-                {% if card_product.featured_media == null and settings.card_style == 'standard' %}
+                {% if card_product.featured_media == null and gph_first == blank and settings.card_style == 'standard' %}
                   id="title-{{ section_id }}-{{ card_product.id }}"
                 {% endif %}
               >
@@ -148,8 +176,8 @@
         <div class="card__content">
           <div class="card__information">
             <h3
-              class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-              {% if card_product.featured_media or settings.card_style == 'card' %}
+              class="card__heading{% if card_product.featured_media or gph_first or settings.card_style == 'standard' %} h5{% endif %}"
+              {% if card_product.featured_media or gph_first or settings.card_style == 'card' %}
                 id="title-{{ section_id }}-{{ card_product.id }}"
               {% endif %}
             >

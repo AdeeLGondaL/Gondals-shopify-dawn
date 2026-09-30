@@ -1,0 +1,14 @@
+{%- comment -%} Simple gallery for external placeholder images (used while the store is on trial). {%- endcomment -%}
+<div class="gondals-ph-gallery">
+  {%- for url in images -%}
+    <div class="gondals-ph-gallery__item{% if forloop.first %} gondals-ph-gallery__item--main{% endif %}">
+      <img
+        src="{{ url }}&w={% if forloop.first %}1400{% else %}700{% endif %}"
+        alt="{{ product.title | escape }}"
+        {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+        width="1400"
+        height="1400"
+      >
+    </div>
+  {%- endfor -%}
+</div>
