@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "main": {
+      "type": "gondals-withdrawal-form",
+      "settings": {
+        "menu": "legal",
+        "padding_top": 40,
+        "padding_bottom": 64
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
