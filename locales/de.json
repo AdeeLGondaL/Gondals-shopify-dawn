@@ -540,16 +540,16 @@
     "go_to_slide": "Zu Folie {{ index }}",
     "shop_all_in": "Alles aus {{ title }}",
     "withdrawal": {
-      "subject": "Widerruf des Vertrags",
+      "subject": "Rücksendung (Widerruf)",
       "name": "Vor- und Nachname",
       "email": "E-Mail",
       "order": "Bestellnummer",
       "date": "Bestellt am / erhalten am",
-      "items": "Artikel, die Sie widerrufen",
-      "declaration": "Hiermit widerrufe ich den Vertrag über die oben genannten Artikel.",
-      "submit": "Widerruf bestätigen",
+      "items": "Artikel, die Sie zurücksenden möchten",
+      "declaration": "Hiermit widerrufe ich den Kauf der oben genannten Artikel.",
+      "submit": "Rücksendung bestätigen",
       "hint": "Wir bestätigen den Eingang per E-Mail.",
-      "success_title": "Widerruf eingegangen",
+      "success_title": "Rücksendung eingegangen",
       "success_text": "Wir bestätigen den Eingang per E-Mail."
     },
     "search": {

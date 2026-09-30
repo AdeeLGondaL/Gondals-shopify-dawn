@@ -100,11 +100,15 @@ Locale strings live under the `gondals` key in `locales/en.default.json` and `lo
 
 ## Germany / EU compliance notes
 
-- Legal pages exist as **drafts with [placeholders]** (pages `impressum`, `agb`, `widerrufsbelehrung`, `versand-zahlung`, `widerruf`; menus `legal`, `footer-legal`, `footer`).
+- Legal pages exist as **drafts with [placeholders]**. Shopper-facing names in English, legal text in German:
+  `/pages/shipping` (Shipping & payment), `/pages/returns` (Returns & refunds = Widerrufsbelehrung), `/pages/start-return` (Start a return = online withdrawal form),
+  `/pages/terms` (Terms & conditions = AGB), `/pages/impressum` (Imprint). Old German handles redirect.
+  Menus: `footer` (Help: contact, shipping, returns, start a return, search), `footer-legal` (imprint, privacy, terms), `legal` ("Customer info", sidebar on these pages).
   Before launch: fill owner name, phone, VAT ID, return address, shipping costs; have them legally reviewed (or replace with a legal-text service);
   paste the final texts into Settings → Policies too (the API token lacks `write_legal_policies`), so checkout links them.
 - Privacy policy is still Shopify's English auto-text: replace with a German GDPR Datenschutzerklärung.
-- Online withdrawal ("Vertrag hier widerrufen", EU rule from 19 June 2026): form at `/pages/widerruf`, linked in the footer on every page.
+- Online withdrawal (EU rule from 19 June 2026): form at `/pages/start-return` ("Start a return"), linked in the footer on every page.
+  The rule asks for "withdraw from contract here" or equally unambiguous wording; have the "Start a return" label checked in the legal review.
   Shopify's contact form does **not** email the customer, so every submission needs a manual (or Flow/app) confirmation of receipt.
 - Still needed: cookie consent configured, prices incl. VAT with shipping cost info.
 - Strikethrough prices must reflect the lowest price of the last 30 days (PAngV).
