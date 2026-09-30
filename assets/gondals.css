@@ -35,7 +35,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 */
 .header__gondals-logo { display: inline-flex; align-items: center; color: var(--gondals-teal); }
 .header__gondals-logo .gondals-logo--stacked { height: 4.4rem; width: auto; display: block; transition: height 0.3s var(--gondals-ease); }
-@media screen and (min-width: 990px) { .header__gondals-logo .gondals-logo--stacked { height: 6rem; } }
+@media screen and (min-width: 990px) { .header__gondals-logo .gondals-logo--stacked { height: 6.8rem; } }
 .header__heading, .header__heading-link { margin: 0; padding: 0; line-height: 0; }
 .header-wrapper { transition: box-shadow 0.25s var(--gondals-ease); }
 .header-wrapper--border-bottom { border-bottom: 0; }
@@ -67,7 +67,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   .header--top-center .header__icons { justify-self: end; margin-right: -1.2rem; }
   .header--top-center .header__inline-menu { justify-self: center; margin-top: 0.4rem; }
   .header--top-center .header__inline-menu .list-menu--inline { justify-content: center; gap: 0 4.4rem; flex-wrap: wrap; }
-  .scrolled-past-header .header__gondals-logo .gondals-logo--stacked { height: 4.8rem; }
+  .scrolled-past-header .header__gondals-logo .gondals-logo--stacked { height: 5.4rem; }
 }
 
 /* Icons: larger, thin-line, like the reference */
@@ -78,6 +78,8 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   .header__icon .svg-wrapper, .header__icon .icon, .header__icon .svg-wrapper svg { width: 2.9rem; height: 2.9rem; }
   .header__icon { width: 5rem; height: 5rem; }
 }
+.header__icon--cart .svg-wrapper, .header__icon--cart .icon, .header__icon--cart .svg-wrapper svg { width: 4.4rem !important; height: 4.4rem !important; }
+@media screen and (min-width: 990px) { .header__icon--cart .svg-wrapper, .header__icon--cart .icon, .header__icon--cart .svg-wrapper svg { width: 4.8rem !important; height: 4.8rem !important; } }
 .header__icon .svg-wrapper { transition: transform 0.2s var(--gondals-ease), color 0.2s; }
 .header__icon:hover .svg-wrapper { transform: scale(1.08); color: var(--gondals-teal); }
 .header__icon--cart .cart-count-bubble { background: var(--gondals-teal); color: var(--gondals-deep); font-weight: 700; }
