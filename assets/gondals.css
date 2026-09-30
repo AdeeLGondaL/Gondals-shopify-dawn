@@ -718,9 +718,12 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
    ========================================================= */
 .header__search .search-modal {
   position: fixed; inset: 0; z-index: 110;
+  justify-content: flex-start; align-items: stretch;
   height: 100dvh; min-height: 0; padding: 0; border: 0;
   background: transparent; opacity: 1;
 }
+/* Lift the header layer above the announcement bar while search is open */
+body:has(.header__search details[open]) .section-header { z-index: 120; }
 .header__search .search-modal .modal-overlay {
   position: absolute; inset: 0; display: block;
   background: rgba(0, 53, 61, 0.45);
@@ -732,6 +735,9 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
   display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
   width: min(46rem, 100%); height: 100%; padding: 0; overflow-y: auto; overscroll-behavior: contain;
   border-inline-end: 1px solid var(--gondals-line);
+  /* The header uses the dark scheme; the panel is light, so reset Dawn's scheme variables */
+  --color-foreground: 17, 27, 29; --color-background: 255, 255, 255; --color-link: 0, 53, 61;
+  --color-button: 0, 53, 61; --color-button-text: 255, 255, 255;
   color: var(--gondals-ink); background: #fff;
   animation: gondalsPanelIn 0.32s var(--gondals-ease) both;
 }
