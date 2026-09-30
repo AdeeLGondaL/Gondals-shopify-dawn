@@ -205,7 +205,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="header__gondals-logo">{%- render 'gondals-logo' -%}</span>
+          <span class="header__gondals-logo">{%- render 'gondals-logo', variant: 'stacked' -%}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
@@ -248,7 +248,7 @@
             }}
           </div>
         {%- else -%}
-          <span class="header__gondals-logo">{%- render 'gondals-logo' -%}</span>
+          <span class="header__gondals-logo">{%- render 'gondals-logo', variant: 'stacked' -%}</span>
         {%- endif -%}
       </a>
       {%- if request.page_type == 'index' -%}
