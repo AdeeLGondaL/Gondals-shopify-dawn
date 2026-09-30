@@ -104,6 +104,14 @@
                             height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
                           >
                         </div>
+                      {% else %}
+                        {%- assign gph = item.product.metafields.gondals.placeholder_images.value | first -%}
+                        {%- if gph -%}
+                          <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                          <div class="cart-item__image-container gradient global-media-settings">
+                            <img src="{{ gph }}&w=300" class="cart-item__image" alt="" loading="lazy" width="150" height="150">
+                          </div>
+                        {%- endif -%}
                       {% endif %}
                     </td>
 
