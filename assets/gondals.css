@@ -94,7 +94,6 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   .gondals-hero__slide { align-items: flex-end; min-height: 52rem; }
   .gondals-hero__box { padding: 4rem 0 5.6rem; }
   .gondals-hero__text { font-size: 1.5rem; }
-  .gondals-top { width: 4rem; height: 4rem; left: auto; right: 1.6rem; bottom: 1.6rem; }
 }
 .gondals-hero__slide--right .gondals-hero__overlay { transform: scaleX(-1); }
 .gondals-hero__slide--center .gondals-hero__overlay { background: rgba(0, 53, 61, calc(var(--overlay) + 0.2)); }
@@ -308,6 +307,10 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .gondals-top.is-visible { opacity: 1; pointer-events: auto; transform: none; }
 .gondals-top:hover { background: var(--gondals-teal); }
 .gondals-top svg { width: 2.2rem; height: 2.2rem; }
+
+@media screen and (max-width: 749px) {
+  .gondals-top { width: 4rem; height: 4rem; left: auto; right: 1.6rem; bottom: 1.6rem; }
+}
 
 /* ---------- Motion safety ---------- */
 @media (prefers-reduced-motion: reduce) {
