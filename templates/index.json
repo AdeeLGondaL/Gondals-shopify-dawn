@@ -245,39 +245,6 @@
         "padding_bottom": 44
       }
     },
-    "newsletter": {
-      "type": "newsletter",
-      "blocks": {
-        "h": {
-          "type": "heading",
-          "settings": {
-            "heading": "Get 10% off your first order",
-            "heading_size": "h1"
-          }
-        },
-        "p": {
-          "type": "paragraph",
-          "settings": {
-            "text": "<p>Join our newsletter for new arrivals and member-only offers.</p>"
-          }
-        },
-        "f": {
-          "type": "email_form",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "h",
-        "p",
-        "f"
-      ],
-      "settings": {
-        "color_scheme": "scheme-3",
-        "full_width": true,
-        "padding_top": 48,
-        "padding_bottom": 56
-      }
-    },
     "ticker": {
       "type": "gondals-ticker",
       "blocks": {
@@ -341,7 +308,6 @@
     "essentials",
     "decor",
     "leather",
-    "trust",
-    "newsletter"
+    "trust"
   ]
 }

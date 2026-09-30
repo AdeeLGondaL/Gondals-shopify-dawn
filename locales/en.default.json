@@ -538,6 +538,7 @@
     "prev": "Previous",
     "next": "Next",
     "go_to_slide": "Go to slide {{ index }}",
+    "shop_all_in": "Shop all {{ title }}",
     "collection": {
       "breadcrumb": "Breadcrumb",
       "home": "Home",

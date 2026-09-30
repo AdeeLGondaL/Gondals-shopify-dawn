@@ -3,7 +3,8 @@
 (function () {
   var SELECTOR = [
     '.gondals-pill', '.gondals-hero__btn', '.gondals-hero__arrow', '.gondals-row__arrow', '.gondals-buy-now__button',
-    '.product .product-form__submit', '.gondals-sticky-atc__btn', '#CartDrawer-Checkout', '.cart__checkout-button'
+    '.product .product-form__submit', '.gondals-sticky-atc__btn', '#CartDrawer-Checkout', '.cart__checkout-button',
+    '.button:not(.button--tertiary)'
   ].join(',');
   var hoverable = window.matchMedia('(hover: hover)');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

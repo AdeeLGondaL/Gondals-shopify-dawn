@@ -54,6 +54,14 @@
                             {{ link.title | escape }}
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                            <li>
+                              <a
+                                href="{{ link.url }}"
+                                class="menu-drawer__menu-item link link--text list-menu__item focus-inset gondals-drawer__all"
+                              >
+                                {{- 'gondals.shop_all_in' | t: title: link.title -}}
+                              </a>
+                            </li>
                             {%- for childlink in link.links -%}
                               <li>
                                 {%- if childlink.links == blank -%}

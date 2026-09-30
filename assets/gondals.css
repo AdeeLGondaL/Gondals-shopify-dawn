@@ -329,7 +329,8 @@ body { line-height: 1.6; letter-spacing: 0; }
 .product-card-wrapper .card__information { padding: 0 !important; }
 .product-card-wrapper .card__heading { font-size: 1.4rem; font-weight: 500; line-height: 1.4; margin-bottom: 0.8rem; min-height: 4.1rem; }
 .product-card-wrapper .card__heading a { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.product-card-wrapper .card__heading a:hover { text-decoration: underline; text-underline-offset: 2px; }
+.product-card-wrapper .card__heading a { transition: color 0.2s var(--gondals-ease); }
+.product-card-wrapper .card__heading a:hover { color: var(--gondals-teal-dark); }
 .product-card-wrapper .price { font-size: 1.6rem; font-weight: 700; color: var(--gondals-ink); }
 .product-card-wrapper .price .price-item--regular { color: var(--gondals-ink); }
 .product-card-wrapper .price--on-sale .price-item--sale { color: var(--gondals-ink); }
@@ -748,6 +749,111 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
 .header__inline-menu .header__menu-item:hover span,
 .header__inline-menu .header__menu-item:hover { text-decoration: none !important; }
 
+/* =========================================================
+   De-Dawn: remove the tells of the default theme
+   ========================================================= */
+
+/* Every standard button gets the same liquid fill as the brand buttons.
+   :where() keeps these defaults at zero specificity so per-button colours win. */
+:where(.button) { --gondals-fill: var(--gondals-teal); --gondals-fill-text: var(--gondals-deep); }
+:where(.button--secondary) { --gondals-fill: var(--gondals-deep); --gondals-fill-text: #fff; }
+.button, .shopify-challenge__button, .customer button {
+  font-weight: 600; letter-spacing: 0;
+  transition: color 0.5s var(--gondals-expo), border-color 0.5s var(--gondals-expo), transform 0.15s var(--gondals-ease);
+}
+.button:not(.button--tertiary) { overflow: hidden; isolation: isolate; }
+.button:not(.button--tertiary)::before {
+  content: ''; position: absolute; z-index: -1; inset: auto; left: -25%; top: -50%; width: 150%; height: 200%;
+  border-radius: 50% !important; background: var(--gondals-fill); box-shadow: none !important; pointer-events: none;
+  transform: translate3d(0, -76%, 0); transition: transform 0.5s var(--gondals-expo);
+}
+@media (hover: hover) {
+  .button:not(.button--tertiary):hover:not(:disabled, [aria-disabled='true']) { color: var(--gondals-fill-text); }
+  .button:not(.button--tertiary):hover:not(:disabled, [aria-disabled='true'])::before { transform: translate3d(0, 0, 0); }
+}
+/* Dawn thickens the outline on hover; keep the resting border instead */
+.button:not([disabled]):hover::after, .shopify-challenge__button:hover::after, .customer button:hover::after {
+  box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--buttons-border-offset)) rgba(var(--color-button-text), var(--border-opacity)),
+    0 0 0 var(--buttons-border-width) rgba(var(--color-button), var(--alpha-button-background));
+}
+/* Pressed state (Apple HIG): a small, quick scale-down */
+.button:active:not(:disabled, [aria-disabled='true']) { transform: scale(0.98); }
+
+/* Focus: one crisp ring in the section's text colour instead of Dawn's blurred glow */
+*:focus-visible { outline: 2px solid rgb(var(--color-foreground)); outline-offset: 3px; box-shadow: none; }
+.button:focus, .button:focus-visible, .shopify-payment-button__button--unbranded:focus-visible { box-shadow: none; }
+.button:focus-visible, .shopify-payment-button__button--unbranded:focus-visible { outline: 2px solid rgb(var(--color-foreground)); outline-offset: 3px; }
+::selection { background: rgba(48, 170, 189, 0.28); }
+
+/* No underlines on interface text. Dawn underlines menu items, accordions, card and
+   cart titles, facets, footer links and more on hover, each in its own component file;
+   one !important reset beats them all. Running copy (.rte) keeps a quiet underline so
+   inline links stay recognisable (WCAG 1.4.1). */
+:is(a, button, summary, label, span, small, p, li, h1, h2, h3, h4, h5, h6) { text-decoration-line: none !important; }
+.rte a {
+  text-decoration-line: underline !important; text-decoration-thickness: 1px; text-underline-offset: 0.3rem;
+  text-decoration-color: rgba(var(--color-foreground), 0.35);
+  transition: text-decoration-color 0.2s var(--gondals-ease), color 0.2s var(--gondals-ease);
+}
+.rte a:hover { text-decoration-color: currentColor; }
+/* Sold-out variant pills keep Dawn's strike-through */
+.product-form__input input[type='radio'].disabled + label,
+.product-form__input input[type='radio']:disabled + label { text-decoration-line: line-through !important; }
+/* Former underline hovers become colour changes */
+.underlined-link, .customer a { color: var(--gondals-teal-dark); font-weight: 500; transition: color 0.2s var(--gondals-ease); }
+.underlined-link:hover, .customer a:hover { color: var(--gondals-deep); }
+.accordion__title, .share-button__button, .shopify-payment-button__more-options, .product__view-details { transition: color 0.2s var(--gondals-ease); }
+summary:hover .accordion__title, .share-button__button:hover, .product__view-details:hover { color: var(--gondals-teal-dark); }
+.shopify-payment-button__more-options:hover { color: var(--gondals-deep); }
+.cart-item__name { transition: color 0.2s var(--gondals-ease); }
+.cart-item__name:hover { color: var(--gondals-teal-dark); }
+
+/* Dawn's spaced-out uppercase captions ("PRODUCT", "TOTAL") -> quiet sentence-case labels */
+.caption-with-letter-spacing { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.02rem; text-transform: none; color: var(--gondals-muted); }
+.caption, .caption-large { letter-spacing: 0; }
+
+/* Fields: hairline border, clear hover, solid 2px focus */
+.field:after, .select:after, .customer .field:after, .customer select:after, .localization-form__select:after {
+  box-shadow: 0 0 0 1px rgba(var(--color-foreground), 0.22);
+}
+.field:hover.field:after, .select:hover.select:after, .select__select:hover.select__select:after,
+.customer .field:hover.field:after, .customer select:hover.select:after,
+.localization-form__select:hover.localization-form__select:after { box-shadow: 0 0 0 1px rgba(var(--color-foreground), 0.5); }
+.field__input:focus, .field__input:focus-visible, .select__select:focus, .select__select:focus-visible,
+.customer .field input:focus, .customer .field input:focus-visible, .customer select:focus, .customer select:focus-visible {
+  outline: 0; box-shadow: 0 0 0 2px rgb(var(--color-foreground));
+}
+.field__label, .customer .field label { letter-spacing: 0; }
+
+/* Mobile menu drawer: iOS-style list rows */
+.menu-drawer__navigation { padding-block: 0.8rem; }
+.menu-drawer__menu-item {
+  padding: 1.5rem 2.4rem; border-bottom: 1px solid var(--gondals-line);
+  font-size: 1.6rem; font-weight: 500; line-height: 1.3; color: var(--gondals-ink);
+  transition: background-color 0.2s var(--gondals-ease), color 0.2s var(--gondals-ease);
+}
+.menu-drawer__menu-item:hover, .menu-drawer__menu-item:active { background: var(--gondals-soft); color: var(--gondals-deep); }
+.menu-drawer__menu-item--active { color: var(--gondals-deep); font-weight: 600; background: var(--gondals-soft); }
+.menu-drawer__menu-item .icon-arrow { width: 1.4rem; color: var(--gondals-muted); }
+.menu-drawer__close-button {
+  width: 100%; margin: 0; padding: 1.6rem 2.4rem; border-bottom: 1px solid var(--gondals-line);
+  font-size: 1.4rem; font-weight: 600; color: var(--gondals-teal-dark); background: var(--gondals-soft);
+}
+.menu-drawer__close-button .icon-arrow { width: 1.4rem; margin-inline-end: 0.8rem; }
+.gondals-drawer__all { font-weight: 600; color: var(--gondals-teal-dark); }
+.menu-drawer__utility-links { padding: 2rem 2.4rem; background: var(--gondals-soft); }
+
+/* Footer: calm hierarchy, dim links that brighten on hover */
+.footer .footer-block__heading { margin-bottom: 1.6rem; font-size: 1.4rem; font-weight: 700; letter-spacing: 0; }
+.footer .list-menu__item--link { padding-block: 0.5rem; font-size: 1.4rem; color: rgba(255, 255, 255, 0.72); transition: color 0.2s var(--gondals-ease); }
+.footer .list-menu__item--link:hover, .footer a.link:hover { color: #fff; }
+.footer .rte a { text-decoration-line: none !important; color: var(--gondals-teal); }
+.footer .rte a:hover { color: #fff; }
+.footer .footer__content-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.footer .copyright__content, .footer .policies a { font-size: 1.2rem; color: rgba(255, 255, 255, 0.6); transition: color 0.2s var(--gondals-ease); }
+.footer .copyright__content a { color: inherit; }
+.footer .policies a:hover { color: #fff; }
+
 /* ---------- Keyboard focus ----------
    Dawn's default ring uses the scheme foreground, which disappears on
    dark hero/tile imagery. A white+teal double ring reads on any surface. */
@@ -776,6 +882,7 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
   .gondals-nav__roll, .header__inline-menu .header__menu-item > span:first-child { transition: none; }
   .gondals-pill::before, .gondals-hero__btn::before, .gondals-hero__arrow::before, .gondals-row__arrow::before,
   .gondals-buy-now__button::before, .product .product-form__submit::before, .gondals-sticky-atc__btn::before,
-  #CartDrawer-Checkout::before, .cart__checkout-button::before { transition: none; }
+  #CartDrawer-Checkout::before, .cart__checkout-button::before, .button:not(.button--tertiary)::before { transition: none; }
+  .button:active:not(:disabled, [aria-disabled='true']) { transform: none; }
 }
 /* end of Gondals brand layer */
