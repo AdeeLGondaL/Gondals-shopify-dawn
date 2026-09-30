@@ -541,6 +541,9 @@
     "delivery_fallback": "in {{ min }}–{{ max }} Werktagen",
     "trust_shipping": "Kostenloser Versand ab 49 €",
     "trust_returns": "14 Tage Rückgabe",
-    "trust_secure": "Sichere Bezahlung"
+    "trust_secure": "Sichere Bezahlung",
+    "free_shipping_remaining_html": "Noch <strong>{{ amount }}</strong> bis zum kostenlosen Versand",
+    "free_shipping_unlocked": "Du erhältst kostenlosen Versand!",
+    "free_shipping_label": "Fortschritt bis zum kostenlosen Versand"
   }
 }

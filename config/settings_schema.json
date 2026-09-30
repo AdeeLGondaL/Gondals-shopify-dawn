@@ -48,6 +48,17 @@
       },
       {
         "type": "header",
+        "content": "Free shipping bar"
+      },
+      {
+        "type": "number",
+        "id": "gondals_free_shipping_threshold",
+        "label": "Free shipping threshold (€)",
+        "info": "Cart total needed for free shipping, in the store currency. Keep it in sync with your shipping rates. Set 0 to hide the bar in the cart drawer and on the cart page.",
+        "default": 49
+      },
+      {
+        "type": "header",
         "content": "WhatsApp chat button"
       },
       {

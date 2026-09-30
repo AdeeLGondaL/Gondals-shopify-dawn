@@ -469,6 +469,34 @@ body.gondals-has-sticky-atc .gondals-whatsapp { bottom: 8.6rem; }
 /* Related products */
 .related-products .related-products__heading { font-weight: 800; }
 
+/* ---------- Free shipping bar (cart drawer + cart page) ---------- */
+.gondals-freeship {
+  display: block; flex: none; margin: 0 0 1.6rem; padding: 1.2rem 1.4rem;
+  background: var(--gondals-soft); border: 1px solid var(--gondals-line); border-radius: 12px;
+}
+.gondals-freeship__text {
+  display: flex; align-items: center; gap: 0.6rem; margin: 0 0 0.9rem;
+  font-size: 1.35rem; line-height: 1.4; color: var(--gondals-ink); letter-spacing: 0;
+}
+.gondals-freeship__text strong { color: var(--gondals-deep); font-weight: 700; }
+.gondals-freeship__icon {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 2rem; height: 2rem; border-radius: 50%; background: var(--gondals-green); color: #fff;
+}
+.gondals-freeship__track {
+  position: relative; height: 0.8rem; border-radius: 999px; overflow: hidden; background: var(--gondals-line);
+}
+.gondals-freeship__fill {
+  display: block; height: 100%; max-width: 100%; border-radius: inherit;
+  background: linear-gradient(90deg, var(--gondals-teal), var(--gondals-teal-dark));
+  transition: width 0.6s var(--gondals-ease), background 0.3s var(--gondals-ease);
+}
+.gondals-freeship.is-unlocked { background: var(--gondals-green-bg); border-color: transparent; }
+.gondals-freeship.is-unlocked .gondals-freeship__text { color: var(--gondals-green); font-weight: 600; }
+.gondals-freeship.is-unlocked .gondals-freeship__fill { background: var(--gondals-green); }
+.drawer__header + .gondals-freeship { margin-top: -0.4rem; }
+.cart__items .gondals-freeship { max-width: 56rem; margin-bottom: 2.4rem; }
+
 /* ---------- Motion safety ---------- */
 @media (prefers-reduced-motion: reduce) {
   .gondals-ticker__track { animation: none; }
@@ -476,4 +504,5 @@ body.gondals-has-sticky-atc .gondals-whatsapp { bottom: 8.6rem; }
   .product-card-wrapper .card--card, .product-card-wrapper .card__media .media img { transition: none !important; transform: none !important; }
   .gondals-hero__box > * { opacity: 1; }
   .gondals-sticky-atc { transition: none; }
+  .gondals-freeship__fill { transition: none; }
 }

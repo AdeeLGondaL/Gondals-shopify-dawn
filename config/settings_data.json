@@ -192,6 +192,7 @@
         }
       },
       "gondals_show_buy_now": true,
+      "gondals_free_shipping_threshold": 49,
       "gondals_whatsapp_number": "",
       "gondals_whatsapp_message": "Hi Gondals, I have a question about",
       "gondals_whatsapp_position": "right"
