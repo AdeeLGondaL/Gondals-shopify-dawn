@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "image_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?fit=crop&q=80&fm=jpg&ar=21:9",
-            "overlay": 25,
+            "overlay": 0,
             "align": "left",
             "eyebrow": "New in",
             "heading": "Vases, lamps & mosaics",
@@ -102,6 +102,7 @@
         "c4": {
           "type": "category",
           "settings": {
+            "collection": "",
             "label": "Shop all",
             "image_url": "https://images.unsplash.com/photo-1705326701287-346fc37a2c86?fit=crop&q=80&fm=jpg&ar=1:1"
           }
@@ -126,6 +127,7 @@
       "settings": {
         "eyebrow": "",
         "title": "Top selling",
+        "collection": "",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -165,93 +167,6 @@
         "color_scheme": "scheme-1",
         "padding_top": 16,
         "padding_bottom": 16
-      }
-    },
-    "essentials": {
-      "type": "gondals-product-row",
-      "settings": {
-        "eyebrow": "Just dropped",
-        "title": "Home essentials",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 24,
-        "collection": "home-essentials"
-      }
-    },
-    "decor": {
-      "type": "gondals-product-row",
-      "settings": {
-        "eyebrow": "",
-        "title": "Home decor",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 24,
-        "collection": "home-decor"
-      }
-    },
-    "leather": {
-      "type": "gondals-product-row",
-      "settings": {
-        "eyebrow": "",
-        "title": "Leather accessories",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 24,
-        "collection": "leather-accessories"
-      }
-    },
-    "trust": {
-      "type": "trust-bar",
-      "blocks": {
-        "t1": {
-          "type": "item",
-          "settings": {
-            "icon": "truck",
-            "title": "Free shipping",
-            "text": "On orders over €49"
-          }
-        },
-        "t2": {
-          "type": "item",
-          "settings": {
-            "icon": "return",
-            "title": "14-day returns",
-            "text": "No reason needed"
-          }
-        },
-        "t3": {
-          "type": "item",
-          "settings": {
-            "icon": "lock",
-            "title": "Secure checkout",
-            "text": "PayPal, Klarna & cards"
-          }
-        },
-        "t4": {
-          "type": "item",
-          "settings": {
-            "icon": "support",
-            "title": "Support",
-            "text": "Reply within 24 hours"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3",
-        "t4"
-      ],
-      "settings": {
-        "color_scheme": "scheme-2",
-        "padding_top": 44,
-        "padding_bottom": 44
       }
     },
     "ticker": {
@@ -305,6 +220,93 @@
       "settings": {
         "color_scheme": "scheme-3",
         "speed": 35
+      }
+    },
+    "essentials": {
+      "type": "gondals-product-row",
+      "settings": {
+        "eyebrow": "Just dropped",
+        "title": "Home essentials",
+        "collection": "home-essentials",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "decor": {
+      "type": "gondals-product-row",
+      "settings": {
+        "eyebrow": "",
+        "title": "Home decor",
+        "collection": "home-decor",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "leather": {
+      "type": "gondals-product-row",
+      "settings": {
+        "eyebrow": "",
+        "title": "Leather accessories",
+        "collection": "leather-accessories",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "title": "Free shipping",
+            "text": "On orders over €49"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "title": "14-day returns",
+            "text": "No reason needed"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure checkout",
+            "text": "PayPal, Klarna & cards"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "support",
+            "title": "Support",
+            "text": "Reply within 24 hours"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "padding_top": 44,
+        "padding_bottom": 44
       }
     }
   },
