@@ -1,0 +1,56 @@
+{%- comment -%} Sticky add-to-cart bar, shown once the main buy buttons scroll out of view. Accepts: product, section_id, product_form_id {%- endcomment -%}
+{%- liquid
+  assign ph = product.metafields.gondals.placeholder_images.value
+  assign v = product.selected_or_first_available_variant
+-%}
+<div class="gondals-sticky-atc" data-form="{{ product_form_id }}" data-section="{{ section_id }}" aria-hidden="true">
+  <div class="gondals-sticky-atc__inner page-width">
+    <div class="gondals-sticky-atc__media">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', alt: '' }}
+      {%- elsif ph -%}
+        <img src="{{ ph | first }}&w=120" alt="" loading="lazy" width="60" height="60">
+      {%- endif -%}
+    </div>
+    <div class="gondals-sticky-atc__info">
+      <p class="gondals-sticky-atc__title">{{ product.title | escape }}</p>
+      <p class="gondals-sticky-atc__price">{{ v.price | money }}</p>
+    </div>
+    <button type="button" class="button gondals-sticky-atc__btn" tabindex="-1"{% unless product.available %} disabled{% endunless %}>
+      {%- if product.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+    </button>
+  </div>
+</div>
+<script>
+  (function () {
+    var bar = document.currentScript.previousElementSibling;
+    var form = document.getElementById(bar.dataset.form);
+    if (!form) return;
+    var submit = form.querySelector('[type="submit"]');
+    var priceEl = document.getElementById('price-' + bar.dataset.section);
+    var barPrice = bar.querySelector('.gondals-sticky-atc__price');
+    var btn = bar.querySelector('.gondals-sticky-atc__btn');
+    function syncPrice() {
+      var p = null;
+      if (priceEl) {
+        var onSale = priceEl.querySelector('.price--on-sale');
+        p = onSale ? priceEl.querySelector('.price-item--sale') : priceEl.querySelector('.price__regular .price-item--regular');
+      }
+      if (p) barPrice.textContent = p.textContent.trim();
+      if (submit) { btn.disabled = submit.disabled; btn.textContent = submit.textContent.trim(); }
+    }
+    if (priceEl) new MutationObserver(syncPrice).observe(priceEl, { childList: true, subtree: true });
+    if (submit) new MutationObserver(syncPrice).observe(submit, { attributes: true, childList: true, subtree: true });
+    btn.addEventListener('click', function () { if (submit && !submit.disabled) submit.click(); });
+    var target = form.closest('.product-form') || form;
+    new IntersectionObserver(function (entries) {
+      var e = entries[0];
+      var show = !e.isIntersecting && e.boundingClientRect.top < 0;
+      bar.classList.toggle('is-visible', show);
+      bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+      btn.tabIndex = show ? 0 : -1;
+      document.body.classList.toggle('gondals-has-sticky-atc', show);
+    }).observe(target);
+    syncPrice();
+  })();
+</script>

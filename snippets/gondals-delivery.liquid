@@ -1,0 +1,25 @@
+{%- comment -%}
+  Estimated delivery window in business days (Mon-Fri). Accepts: min (default 3), max (default 7)
+  Adjust to your supplier's real shipping times.
+{%- endcomment -%}
+{%- assign dmin = min | default: 3 -%}
+{%- assign dmax = max | default: 7 -%}
+<div class="gondals-delivery" data-min="{{ dmin }}" data-max="{{ dmax }}" data-locale="{{ request.locale.iso_code }}">
+  <span class="gondals-delivery__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg>
+  </span>
+  <p class="gondals-delivery__text">
+    {{ 'gondals.delivery_label' | t }}
+    <strong class="gondals-delivery__dates">{{ 'gondals.delivery_fallback' | t: min: dmin, max: dmax }}</strong>
+  </p>
+</div>
+<script>
+  (function () {
+    var el = document.currentScript.previousElementSibling;
+    function addBiz(d, n) { d = new Date(d); while (n > 0) { d.setDate(d.getDate() + 1); var w = d.getDay(); if (w !== 0 && w !== 6) n--; } return d; }
+    var now = new Date(), loc = el.dataset.locale || undefined;
+    var f = { weekday: 'short', day: 'numeric', month: 'short' };
+    var a = addBiz(now, +el.dataset.min).toLocaleDateString(loc, f), b = addBiz(now, +el.dataset.max).toLocaleDateString(loc, f);
+    el.querySelector('.gondals-delivery__dates').textContent = a + ' – ' + b;
+  })();
+</script>

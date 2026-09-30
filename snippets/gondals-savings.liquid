@@ -1,0 +1,9 @@
+{%- comment -%} Discount badge + savings pill for the product page. Accepts: variant {%- endcomment -%}
+{%- if variant.compare_at_price > variant.price -%}
+  {%- assign pct = variant.compare_at_price | minus: variant.price | times: 100 | divided_by: variant.compare_at_price -%}
+  {%- assign saved = variant.compare_at_price | minus: variant.price | money -%}
+  <div class="gondals-pdp-savings">
+    <span class="gondals-pdp-savings__pct">-{{ pct }}%</span>
+    <span class="gondals-save">{{ 'gondals.save' | t: amount: saved }}</span>
+  </div>
+{%- endif -%}

@@ -536,6 +536,11 @@
     "view_all": "Alle ansehen",
     "back_to_top": "Nach oben",
     "prev": "Zurück",
-    "next": "Weiter"
+    "next": "Weiter",
+    "delivery_label": "Voraussichtliche Lieferung:",
+    "delivery_fallback": "in {{ min }}–{{ max }} Werktagen",
+    "trust_shipping": "Kostenloser Versand ab 49 €",
+    "trust_returns": "14 Tage Rückgabe",
+    "trust_secure": "Sichere Bezahlung"
   }
 }
