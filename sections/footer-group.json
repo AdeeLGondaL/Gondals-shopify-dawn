@@ -25,11 +25,11 @@
             "menu": "footer"
           }
         },
-        "contact": {
-          "type": "text",
+        "legal": {
+          "type": "link_list",
           "settings": {
-            "heading": "Contact",
-            "subtext": "<p><a href=\"mailto:gondals@online.de\">gondals@online.de</a></p>"
+            "heading": "Legal",
+            "menu": "footer-legal"
           }
         }
       },
@@ -37,7 +37,7 @@
         "brand",
         "shop",
         "help",
-        "contact"
+        "legal"
       ],
       "settings": {
         "color_scheme": "scheme-3",
