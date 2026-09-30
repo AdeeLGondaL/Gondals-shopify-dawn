@@ -527,5 +527,10 @@
       "expanded": "Formular für den Empfänger des Gutscheins erweitert",
       "collapsed": "Formular für den Empfänger des Gutscheins minimiert"
     }
+  },
+  "gondals": {
+    "buy_now": "Jetzt kaufen",
+    "choose_options": "Optionen wählen",
+    "whatsapp": "Schreib uns auf WhatsApp"
   }
 }

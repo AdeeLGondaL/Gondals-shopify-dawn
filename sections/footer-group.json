@@ -4,12 +4,45 @@
   "sections": {
     "footer": {
       "type": "footer",
-      "blocks": {},
-      "block_order": [],
+      "blocks": {
+        "brand": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
+        },
+        "shop": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "main-menu"
+          }
+        },
+        "help": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "menu": "footer"
+          }
+        },
+        "contact": {
+          "type": "text",
+          "settings": {
+            "heading": "Contact",
+            "subtext": "<p>Questions about an order?<br><a href=\"mailto:gondals@online.de\">gondals@online.de</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "brand",
+        "shop",
+        "help",
+        "contact"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-3",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "Get 10% off your first order",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": true,

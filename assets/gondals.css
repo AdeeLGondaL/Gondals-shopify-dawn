@@ -1,0 +1,54 @@
+/* Gondals brand overrides on top of Dawn */
+:root {
+  --gondals-teal: #30aabd;
+  --gondals-deep: #00353d;
+}
+
+/* Header logo lockup */
+.header__gondals-logo { display: inline-flex; align-items: center; color: var(--gondals-teal); }
+.header__gondals-logo .gondals-logo--full { height: 3.8rem; width: auto; display: block; }
+@media screen and (max-width: 749px) {
+  .header__gondals-logo .gondals-logo--full { height: 3rem; }
+}
+.color-scheme-3 .header__gondals-logo,
+.color-scheme-4 .header__gondals-logo { color: #ffffff; }
+
+/* Discount badge: slightly bolder */
+.card__badge .badge { font-weight: 600; letter-spacing: 0.02rem; }
+
+/* Buy now button on product cards (sits above the card's full-cover link) */
+.gondals-buy-now { position: relative; z-index: 2; margin-top: 1rem; }
+.gondals-buy-now__button { min-height: 4.2rem; font-size: 1.4rem; padding: 0 1.2rem; }
+
+/* Trust bar */
+.gondals-trust { padding-top: var(--gt-pt); padding-bottom: var(--gt-pb); }
+.gondals-trust__grid {
+  display: grid; gap: 2rem 3rem; list-style: none; margin: 0; padding: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media screen and (min-width: 990px) {
+  .gondals-trust__grid { grid-template-columns: repeat(var(--gt-cols, 4), minmax(0, 1fr)); }
+}
+.gondals-trust__item { display: flex; align-items: flex-start; gap: 1.2rem; }
+.gondals-trust__icon {
+  flex: 0 0 4.4rem; height: 4.4rem; border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(48, 170, 189, 0.14); color: var(--gondals-teal);
+}
+.gondals-trust__icon svg { width: 2.2rem; height: 2.2rem; }
+.gondals-trust__title { margin: 0 0 0.2rem; font-size: 1.5rem; font-weight: 600; line-height: 1.3; }
+.gondals-trust__text { margin: 0; font-size: 1.3rem; line-height: 1.45; color: rgba(var(--color-foreground), 0.72); }
+
+/* Floating WhatsApp button */
+.gondals-whatsapp {
+  position: fixed; bottom: 2rem; z-index: 90;
+  width: 5.6rem; height: 5.6rem; border-radius: 50%;
+  display: grid; place-items: center;
+  background: #25d366; color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease;
+}
+.gondals-whatsapp:hover { transform: scale(1.06); }
+.gondals-whatsapp svg { width: 3rem; height: 3rem; }
+.gondals-whatsapp--right { right: 2rem; }
+.gondals-whatsapp--left { left: 2rem; }

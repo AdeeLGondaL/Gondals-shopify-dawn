@@ -34,6 +34,53 @@
     ]
   },
   {
+    "name": "Gondals",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product cards"
+      },
+      {
+        "type": "checkbox",
+        "id": "gondals_show_buy_now",
+        "label": "Show Buy now button on product cards",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "WhatsApp chat button"
+      },
+      {
+        "type": "text",
+        "id": "gondals_whatsapp_number",
+        "label": "WhatsApp number",
+        "info": "International format, digits only, e.g. 4915112345678. Leave empty to hide the button."
+      },
+      {
+        "type": "text",
+        "id": "gondals_whatsapp_message",
+        "label": "Prefilled message",
+        "default": "Hi Gondals, I have a question about"
+      },
+      {
+        "type": "select",
+        "id": "gondals_whatsapp_position",
+        "label": "Position",
+        "default": "right",
+        "options": [
+          {
+            "value": "right",
+            "label": "Bottom right"
+          },
+          {
+            "value": "left",
+            "label": "Bottom left"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.colors.name",
     "settings": [
       {
