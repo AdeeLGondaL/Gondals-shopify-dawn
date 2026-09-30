@@ -811,6 +811,7 @@ summary:hover .accordion__title, .share-button__button:hover, .product__view-det
 /* Dawn's spaced-out uppercase captions ("PRODUCT", "TOTAL") -> quiet sentence-case labels */
 .caption-with-letter-spacing { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.02rem; text-transform: none; color: var(--gondals-muted); }
 .caption, .caption-large { letter-spacing: 0; }
+.cart-items thead th { text-transform: none; }
 
 /* Fields: hairline border, clear hover, solid 2px focus */
 .field:after, .select:after, .customer .field:after, .customer select:after, .localization-form__select:after {
