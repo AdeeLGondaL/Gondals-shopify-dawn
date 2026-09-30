@@ -39,6 +39,8 @@ Design reference: saamaan.pk (layout and UX only; Gondals keeps its own colors a
 - Dynamic sources in JSON templates are restricted: `{{ product.vendor }}` works, `{{ product.type }}` got the whole template rejected.
 - A JSON template that references a **new block type** can be rejected if pushed in the same commit as the section that defines it. Push the section first, then the template (or re-touch the template after).
 - Verify a sync landed by checking the file's `updatedAt` via the Shopify Admin API, not by assuming.
+  The GitHub sync can **silently skip some files of a push** (seen with `assets/gondals.css` and locales while a new section in the same push synced).
+  Fix: re-touch the skipped file (whitespace change) in a new commit and push again.
 - Dawn hides `div:empty` (`display: none`). Empty decorative divs (overlays) need `display: block !important` or use a `span`.
 - Keep Dawn core edits minimal; brand styles live in `assets/gondals.css` (loaded after `base.css` in `layout/theme.liquid`).
 - Respect `prefers-reduced-motion` for any new animation.
@@ -54,6 +56,8 @@ Design reference: saamaan.pk (layout and UX only; Gondals keeps its own colors a
 | `sections/gondals-product-row.liquid` | Product slider row: eyebrow, title, View all pill, arrows |
 | `sections/gondals-promo-tiles.liquid` | Image promo tiles |
 | `sections/gondals-ticker.liquid` | Infinite scrolling USP ticker |
+| `sections/gondals-collection-header.liquid` | Collection page header: breadcrumb, title, description, sub-category chips from the main menu's child links |
+| `assets/gondals-menu.js` / `assets/gondals-hover.js` | Header dropdown hover-intent + animated close / liquid-fill button hover exit direction |
 | `sections/trust-bar.liquid` | Icon trust points |
 | `sections/main-product.liquid` | Dawn + blocks `gondals_delivery`, `gondals_trust`, savings under price, sticky ATC |
 | `snippets/card-product.liquid` | Dawn + `-%` badge, savings pill, Buy now button, placeholder image fallback |
@@ -79,7 +83,7 @@ Locale strings live under the `gondals` key in `locales/en.default.json` and `lo
 
 ## Backlog
 
-1. Collection page (filters, sorting, grid styling)
-2. Legal pages skeleton linked in footer
-3. Real hero/collection images once on a paid plan; remove placeholder products
-4. Domain (recommended: gondals.de)
+1. Legal pages skeleton linked in footer
+2. Real hero/collection images once on a paid plan; remove placeholder products
+3. Domain (recommended: gondals.de)
+4. Optional: more filters (product type, material) via the Search & Discovery app
