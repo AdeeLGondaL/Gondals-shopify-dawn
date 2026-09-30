@@ -547,11 +547,12 @@
     },
     "delivery_label": "Estimated delivery:",
     "delivery_fallback": "in {{ min }}–{{ max }} business days",
-    "trust_shipping": "Free shipping from €49",
+    "trust_shipping": "Free shipping over €49",
+    "rights": "All rights reserved",
     "trust_returns": "14-day returns",
     "trust_secure": "Secure checkout",
     "free_shipping_remaining_html": "Add <strong>{{ amount }}</strong> more for free shipping",
-    "free_shipping_unlocked": "You've unlocked free shipping!",
+    "free_shipping_unlocked": "Free shipping unlocked",
     "free_shipping_label": "Progress towards free shipping"
   }
 }

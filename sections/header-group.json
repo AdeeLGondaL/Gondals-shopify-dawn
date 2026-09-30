@@ -17,21 +17,21 @@
         "ann-1": {
           "type": "announcement",
           "settings": {
-            "text": "Free shipping in Germany on orders over €49",
+            "text": "Free shipping over €49",
             "link": ""
           }
         },
         "ann-2": {
           "type": "announcement",
           "settings": {
-            "text": "14-day returns · Secure checkout with PayPal & Klarna",
+            "text": "14-day returns · PayPal & Klarna",
             "link": ""
           }
         },
         "ann-3": {
           "type": "announcement",
           "settings": {
-            "text": "New arrivals every week",
+            "text": "Delivery in 3–7 days",
             "link": "shopify://collections/all"
           }
         }

@@ -4,7 +4,7 @@
       "type": "gondals-collection-header",
       "settings": {
         "show_breadcrumb": true,
-        "show_description": true,
+        "show_description": false,
         "show_image": true,
         "show_subcategories": true,
         "menu": "main-menu",

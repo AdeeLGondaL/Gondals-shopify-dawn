@@ -30,6 +30,24 @@ Design reference: saamaan.pk (layout and UX only; Gondals keeps its own colors a
   `--gondals-expo` (`cubic-bezier(0.3, 1, 0.3, 1)`) is reserved for the saamaan-style nav/button hovers.
 - **Shopify best practices:** layouts at premium e-commerce standard (Shopify Polaris): generous whitespace, subtle 1px borders (`#E2E8F0`-like, `--gondals-line`), muted background containers (`--gondals-soft`).
 
+## Copy rules (learned from saamaan.pk)
+
+Say more with less. Every word must carry a fact, a label or an action.
+
+1. **Labels, not sentences.** Section titles are 1–3 word nouns: "Top selling", "Latest collection", "Shop by category". Category names double as titles.
+2. **Facts beat adjectives.** Numbers, conditions and names only: "Free shipping over €49", "Delivery in 3–7 days", "PayPal, Klarna & cards". Never "fast", "friendly", "premium", "thoughtfully chosen".
+3. **No slogans or poetic lines.** No "Make your home feel like you", "Everyday carry, upgraded". Headlines name what is sold, optionally with a price hook ("Vases & ceramics from €29").
+4. **Eyebrows are rare.** Use one only when it adds information (a discount, "New", "Just dropped"). Never repeat the title in the eyebrow.
+5. **Two-line trust points.** 2–3 word title + one short factual line with a number or condition ("Free shipping" / "On orders over €49"). No trailing periods.
+6. **Price speaks in numbers.** Badges are "-25%", "New", "Save €10". Never "Sale!", "Hot deal", "Amazing price".
+7. **CTAs are 1–2 words, verb first.** "Buy now", "View all", "Shop now", "Add to cart", "See all results". Name the category only when it disambiguates ("Shop leather").
+8. **Titles, not descriptions, on collection pages.** Breadcrumb + title + sub-category chips. No description paragraph repeating what the chips already say.
+9. **Product titles carry the specs** (item + material/size/count), not marketing ("Slim Leather Bifold Wallet", "Microfiber Cleaning Cloths (12 pack)").
+10. **Footer is plain.** Plain link names ("Contact", "Shipping & payment", "Privacy policy"), raw contact values (email, phone), "© 2026 Gondals — All rights reserved." No brand slogan.
+11. **Empty states redirect.** "No results for 'x'" + a short path forward ("Try a category:" + chips). Never a dead end.
+12. **Sentence case** for all UI text (Gondals choice for EN; saamaan uses Title Case). No trailing periods on labels, buttons or single-line points.
+13. **German copy follows the same rules**; keep EN and DE the same length class (short stays short).
+
 ## Workflow rules
 
 - Push directly to `main`. Shopify auto-syncs within ~30-60s.

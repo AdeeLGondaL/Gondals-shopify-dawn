@@ -9,10 +9,10 @@
             "image_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?fit=crop&q=80&fm=jpg&ar=21:9",
             "overlay": 25,
             "align": "left",
-            "eyebrow": "New season",
-            "heading": "Make your home feel like you",
-            "text": "Decor, lighting and marble mosaics picked for modern living.",
-            "button_label": "Shop Home Decor",
+            "eyebrow": "New in",
+            "heading": "Vases, lamps & mosaics",
+            "text": "Home decor from €34,90",
+            "button_label": "Shop decor",
             "button_link": "shopify://collections/home-decor"
           }
         },
@@ -22,10 +22,10 @@
             "image_url": "https://images.unsplash.com/photo-1556911220-bff31c812dba?fit=crop&q=80&fm=jpg&ar=21:9",
             "overlay": 25,
             "align": "left",
-            "eyebrow": "Up to 30% off",
-            "heading": "Kitchen & storage essentials",
-            "text": "Smart everyday helpers for a tidy, beautiful kitchen.",
-            "button_label": "Shop Essentials",
+            "eyebrow": "Up to 28% off",
+            "heading": "Kitchen & storage",
+            "text": "Utensils, jars and cleaning essentials",
+            "button_label": "Shop now",
             "button_link": "shopify://collections/home-essentials"
           }
         },
@@ -36,9 +36,9 @@
             "overlay": 25,
             "align": "left",
             "eyebrow": "Genuine leather",
-            "heading": "Leather that ages beautifully",
-            "text": "Wallets, belts and bags built to last for years.",
-            "button_label": "Shop Leather",
+            "heading": "Wallets, belts & bags",
+            "text": "From €39,90",
+            "button_label": "Shop leather",
             "button_link": "shopify://collections/leather-accessories"
           }
         }
@@ -115,7 +115,7 @@
     "bestsellers": {
       "type": "gondals-product-row",
       "settings": {
-        "eyebrow": "Customer favourites",
+        "eyebrow": "",
         "title": "Top selling",
         "products_to_show": 8,
         "columns_desktop": 4,
@@ -131,9 +131,9 @@
           "type": "tile",
           "settings": {
             "image_url": "https://images.unsplash.com/photo-1631125915902-d8abe9225ff2?fit=crop&q=80&fm=jpg&ar=3:2",
-            "eyebrow": "Home Decor",
-            "heading": "Vases & ceramics from €29",
-            "button_label": "Discover",
+            "eyebrow": "Home decor",
+            "heading": "Vases & ceramics from €34,90",
+            "button_label": "Shop now",
             "link": "shopify://collections/home-decor"
           }
         },
@@ -141,9 +141,9 @@
           "type": "tile",
           "settings": {
             "image_url": "https://images.unsplash.com/photo-1637868796504-32f45a96d5a0?fit=crop&q=80&fm=jpg&ar=3:2",
-            "eyebrow": "Leather",
-            "heading": "Everyday carry, upgraded",
-            "button_label": "Shop leather",
+            "eyebrow": "Up to 27% off",
+            "heading": "Leather wallets & belts",
+            "button_label": "Shop now",
             "link": "shopify://collections/leather-accessories"
           }
         }
@@ -161,8 +161,8 @@
     "essentials": {
       "type": "gondals-product-row",
       "settings": {
-        "eyebrow": "Everyday helpers",
-        "title": "Home Essentials",
+        "eyebrow": "Just dropped",
+        "title": "Home essentials",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -174,8 +174,8 @@
     "decor": {
       "type": "gondals-product-row",
       "settings": {
-        "eyebrow": "Style your space",
-        "title": "Home Decor",
+        "eyebrow": "",
+        "title": "Home decor",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -187,8 +187,8 @@
     "leather": {
       "type": "gondals-product-row",
       "settings": {
-        "eyebrow": "Built to last",
-        "title": "Leather Accessories",
+        "eyebrow": "",
+        "title": "Leather accessories",
         "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
@@ -204,8 +204,8 @@
           "type": "item",
           "settings": {
             "icon": "truck",
-            "title": "Free shipping from €49",
-            "text": "Fast delivery across Germany and the EU"
+            "title": "Free shipping",
+            "text": "On orders over €49"
           }
         },
         "t2": {
@@ -213,7 +213,7 @@
           "settings": {
             "icon": "return",
             "title": "14-day returns",
-            "text": "Changed your mind? Send it back"
+            "text": "Right of withdrawal, EU-wide"
           }
         },
         "t3": {
@@ -221,15 +221,15 @@
           "settings": {
             "icon": "lock",
             "title": "Secure checkout",
-            "text": "PayPal, Klarna and all major cards"
+            "text": "PayPal, Klarna & cards"
           }
         },
         "t4": {
           "type": "item",
           "settings": {
             "icon": "support",
-            "title": "Friendly support",
-            "text": "We reply within 24 hours"
+            "title": "Support",
+            "text": "Reply within 24 hours"
           }
         }
       },
@@ -251,7 +251,7 @@
         "k0": {
           "type": "item",
           "settings": {
-            "text": "Free shipping from €49"
+            "text": "Free shipping over €49"
           }
         },
         "k1": {
@@ -281,7 +281,7 @@
         "k5": {
           "type": "item",
           "settings": {
-            "text": "Shipping across the EU"
+            "text": "Delivery in 3–7 days"
           }
         }
       },

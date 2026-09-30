@@ -29,7 +29,7 @@
           "type": "text",
           "settings": {
             "heading": "Contact",
-            "subtext": "<p>Questions about an order?<br><a href=\"mailto:gondals@online.de\">gondals@online.de</a></p>"
+            "subtext": "<p><a href=\"mailto:gondals@online.de\">gondals@online.de</a></p>"
           }
         }
       },
@@ -42,7 +42,7 @@
       "settings": {
         "color_scheme": "scheme-3",
         "newsletter_enable": true,
-        "newsletter_heading": "Get 10% off your first order",
+        "newsletter_heading": "10% off your first order",
         "enable_follow_on_shop": false,
         "show_social": false,
         "enable_country_selector": true,
