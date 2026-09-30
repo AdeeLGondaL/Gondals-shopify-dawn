@@ -836,7 +836,8 @@ predictive-search[loading] .gondals-search__browse { display: none; }
   border: 0; border-radius: 0; box-shadow: none; overflow: visible; background: transparent;
 }
 .header__search .predictive-search__results-groups-wrapper { flex-direction: column; gap: 2.4rem; padding-bottom: 1.6rem; border: 0; }
-.header__search .predictive-search__result-group { gap: 2.4rem; }
+.header__search .predictive-search__result-group { flex: none; gap: 2.4rem; }
+.header__search .predictive-search__results-groups-wrapper { min-height: 0; height: auto; }
 .header__search .predictive-search__results-list { margin: 0; }
 .header__search .predictive-search__item {
   padding: 0.8rem 1rem; border-radius: 10px;
