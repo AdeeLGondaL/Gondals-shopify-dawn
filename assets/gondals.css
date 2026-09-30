@@ -714,6 +714,58 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
 .pagination__item--current::after, .pagination__item:hover::after { display: none; }
 
 /* =========================================================
+   Legal pages + withdrawal form
+   ========================================================= */
+.gondals-legal { padding-block: var(--gl-pt, 40px) var(--gl-pb, 64px); }
+.gondals-legal__inner { display: grid; gap: 3.2rem; }
+@media screen and (min-width: 990px) {
+  .gondals-legal__inner { grid-template-columns: 24rem minmax(0, 72rem); gap: 6.4rem; align-items: start; }
+  .gondals-legal__nav { position: sticky; top: 2.4rem; }
+}
+.gondals-legal__nav { padding: 1.6rem; border: 1px solid var(--gondals-line); border-radius: 12px; background: var(--gondals-soft); }
+.gondals-legal__nav-title { margin: 0 0 0.8rem; padding-inline: 1rem; font-size: 1.2rem; font-weight: 600; color: var(--gondals-muted); }
+.gondals-legal__nav-list { display: grid; gap: 0.2rem; margin: 0; padding: 0; list-style: none; }
+.gondals-legal__nav-link {
+  display: block; padding: 0.9rem 1rem; border-radius: 8px;
+  font-size: 1.4rem; font-weight: 500; line-height: 1.35; color: var(--gondals-ink); text-decoration: none;
+  transition: background-color 0.2s var(--gondals-ease), color 0.2s var(--gondals-ease);
+}
+.gondals-legal__nav-link:hover { color: var(--gondals-deep); background: #fff; }
+.gondals-legal__nav-link.is-active { color: #fff; background: var(--gondals-deep); }
+@media screen and (max-width: 989px) {
+  .gondals-legal__nav { order: 2; }
+}
+
+.gondals-legal__title {
+  margin: 0 0 2.4rem;
+  font-size: clamp(2.6rem, 3vw, 3.6rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--gondals-deep);
+}
+.gondals-legal__body { font-size: 1.5rem; line-height: 1.7; color: var(--gondals-ink); }
+.gondals-legal__body h2 {
+  margin: 3.2rem 0 1rem; padding-top: 2.4rem; border-top: 1px solid var(--gondals-line);
+  font-size: 1.8rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; color: var(--gondals-deep);
+}
+.gondals-legal__body h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.gondals-legal__body p, .gondals-legal__body ul { margin: 0 0 1.2rem; }
+.gondals-legal__body ul { padding-inline-start: 2rem; }
+.gondals-legal__body li + li { margin-top: 0.4rem; }
+.gondals-legal__body > p:first-child strong { color: var(--gondals-sale-strong); }
+
+/* Withdrawal form */
+.gondals-withdrawal { display: grid; gap: 1.6rem; margin-top: 3.2rem; padding: 2.4rem; border: 1px solid var(--gondals-line); border-radius: 12px; }
+.gondals-withdrawal__grid { display: grid; gap: 1.6rem; }
+@media screen and (min-width: 750px) { .gondals-withdrawal__grid { grid-template-columns: 1fr 1fr; } }
+.gondals-withdrawal .field { margin: 0; }
+.gondals-withdrawal__declaration { margin: 0.4rem 0 0; font-size: 1.45rem; font-weight: 600; color: var(--gondals-deep); }
+.gondals-withdrawal__submit { justify-self: start; min-height: 4.8rem; border-radius: 10px; --color-button: 0, 53, 61; --color-button-text: 255, 255, 255; }
+.gondals-withdrawal__hint { margin: 0; font-size: 1.3rem; color: var(--gondals-muted); }
+.gondals-withdrawal__notice { padding: 1.6rem 2rem; border-radius: 10px; font-size: 1.45rem; }
+.gondals-withdrawal__notice p { margin: 0; }
+.gondals-withdrawal__notice-title { font-weight: 700; }
+.gondals-withdrawal__notice--success { color: var(--gondals-green-text); background: var(--gondals-green-bg); }
+.gondals-withdrawal__notice--error { color: var(--gondals-sale-strong); background: #fdecec; }
+
+/* =========================================================
    Search: side panel (saamaan-style) instead of Dawn's header overlay
    ========================================================= */
 .header__search .search-modal {

@@ -539,6 +539,19 @@
     "next": "Next",
     "go_to_slide": "Go to slide {{ index }}",
     "shop_all_in": "Shop all {{ title }}",
+    "withdrawal": {
+      "subject": "Withdrawal from contract",
+      "name": "Full name",
+      "email": "Email",
+      "order": "Order number",
+      "date": "Ordered on / received on",
+      "items": "Items you are withdrawing from",
+      "declaration": "I hereby withdraw from the contract for the items above.",
+      "submit": "Confirm withdrawal",
+      "hint": "We will confirm receipt by email.",
+      "success_title": "Withdrawal received",
+      "success_text": "We will confirm receipt by email."
+    },
     "search": {
       "placeholder": "Search products",
       "browse": "Browse categories"
