@@ -539,6 +539,10 @@
     "next": "Weiter",
     "go_to_slide": "Zu Folie {{ index }}",
     "shop_all_in": "Alles aus {{ title }}",
+    "search": {
+      "placeholder": "Produkte suchen",
+      "browse": "Kategorien"
+    },
     "collection": {
       "breadcrumb": "Brotkrümelnavigation",
       "home": "Startseite",

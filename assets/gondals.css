@@ -713,6 +713,110 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
 .pagination__item--current, .pagination__item--current:hover { color: #fff; background: var(--gondals-deep); }
 .pagination__item--current::after, .pagination__item:hover::after { display: none; }
 
+/* =========================================================
+   Search: side panel (saamaan-style) instead of Dawn's header overlay
+   ========================================================= */
+.header__search .search-modal {
+  position: fixed; inset: 0; z-index: 110;
+  height: 100dvh; min-height: 0; padding: 0; border: 0;
+  background: transparent; opacity: 1;
+}
+.header__search .search-modal .modal-overlay {
+  position: absolute; inset: 0; display: block;
+  background: rgba(0, 53, 61, 0.45);
+  animation: gondalsFade 0.25s var(--gondals-ease) both;
+}
+.header__search details[open] .modal-overlay::after { display: none; }
+.header__search .search-modal__content {
+  position: relative; inset: auto; z-index: 1;
+  display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
+  width: min(46rem, 100%); height: 100%; padding: 0; overflow-y: auto; overscroll-behavior: contain;
+  border-inline-end: 1px solid var(--gondals-line);
+  color: var(--gondals-ink); background: #fff;
+  animation: gondalsPanelIn 0.32s var(--gondals-ease) both;
+}
+@keyframes gondalsPanelIn { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes gondalsFade { from { opacity: 0; } to { opacity: 1; } }
+
+.gondals-search__title {
+  margin: 0; padding: 2.2rem 7.2rem 1.4rem 2.4rem;
+  font-size: 2rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--gondals-deep);
+}
+.header__search .search-modal__close-button {
+  position: absolute; top: 1.2rem; right: 1.2rem; margin: 0;
+  width: 4.4rem; height: 4.4rem; border-radius: 10px; color: var(--gondals-ink);
+  transition: background-color 0.2s var(--gondals-ease);
+}
+.header__search .search-modal__close-button:hover { background: var(--gondals-soft); }
+.header__search .search-modal__form { max-width: none; padding-inline: 2.4rem; }
+.header__search .search-modal__form .field { margin: 0; }
+.header__search .search__input.field__input {
+  height: 4.8rem; padding: 0 5.6rem 0 1.6rem; border-radius: 10px;
+  font-size: 1.6rem; background: var(--gondals-soft);
+}
+.header__search .search__input.field__input:focus,
+.header__search .search__input.field__input:not(:placeholder-shown) { padding: 0 5.6rem 0 1.6rem; }
+.header__search .search__input::placeholder { color: var(--gondals-muted); opacity: 1; }
+.header__search .search-modal__form .field__label { display: none; }
+.header__search .search-modal__form .field:after { box-shadow: 0 0 0 1px transparent; }
+.header__search .search__button, .header__search .reset__button { color: var(--gondals-muted); }
+
+/* Browse chips before typing; hidden once results show */
+.gondals-search__browse { padding-block: 2.4rem; }
+predictive-search[open] .gondals-search__browse,
+predictive-search[loading] .gondals-search__browse { display: none; }
+.gondals-search__label, .header__search .predictive-search__heading {
+  margin: 0 0 1rem; padding: 0; border: 0;
+  font-size: 1.2rem; font-weight: 600; letter-spacing: 0.02rem; text-transform: none; color: var(--gondals-muted);
+}
+.gondals-search__chips { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 0; padding: 0; list-style: none; }
+.gondals-chip--strong { font-weight: 600; color: var(--gondals-deep); }
+
+/* Results: one column list inside the panel */
+.header__search .predictive-search {
+  position: static; width: 100%; margin-top: 1.6rem;
+  border: 0; border-radius: 0; box-shadow: none; overflow: visible; background: transparent;
+}
+.header__search .predictive-search__results-groups-wrapper { flex-direction: column; gap: 2.4rem; padding-bottom: 1.6rem; border: 0; }
+.header__search .predictive-search__result-group { gap: 2.4rem; }
+.header__search .predictive-search__results-list { margin: 0; }
+.header__search .predictive-search__item {
+  padding: 0.8rem 1rem; border-radius: 10px;
+  font-size: 1.45rem; color: var(--gondals-ink);
+  transition: background-color 0.15s var(--gondals-ease);
+}
+.header__search .predictive-search__item:hover,
+.header__search .predictive-search__list-item[aria-selected='true'] > .predictive-search__item { background: var(--gondals-soft); }
+.header__search .predictive-search__item-heading { font-size: 1.45rem; font-weight: 500; line-height: 1.35; }
+.header__search .predictive-search__item--link-with-thumbnail { grid-template-columns: 5.6rem 1fr; gap: 1.4rem; align-items: center; }
+.header__search .predictive-search__image {
+  width: 5.6rem; height: 5.6rem; object-fit: cover;
+  border: 1px solid var(--gondals-line); border-radius: 8px; background: var(--gondals-soft);
+}
+.header__search .predictive-search__item .price { font-size: 1.35rem; }
+.header__search .predictive-search__item .price-item--sale, .header__search .predictive-search__item .price-item--last { font-weight: 700; color: var(--gondals-ink); }
+.header__search .predictive-search__item-query-result mark { font-weight: 400; color: var(--gondals-muted); background: none; }
+.header__search .predictive-search__item-query-result *:not(mark) { font-weight: 600; }
+
+/* "Search for …" becomes a sticky full-width action at the bottom of the panel */
+.header__search .predictive-search__search-for-button {
+  position: sticky; bottom: 0; z-index: 1;
+  margin-inline: -2.4rem; padding: 1.2rem 2.4rem 1.6rem;
+  border-top: 1px solid var(--gondals-line); background: #fff;
+}
+.header__search .predictive-search__item--term {
+  justify-content: space-between; width: 100%; min-height: 4.8rem; padding: 0 1.6rem;
+  border-radius: 10px; font-size: 1.5rem; font-weight: 600; color: #fff; background: var(--gondals-deep);
+  transition: background-color 0.2s var(--gondals-ease);
+}
+.header__search .predictive-search__item--term:hover,
+.header__search .predictive-search__item--term[aria-selected='true'] { color: var(--gondals-deep); background: var(--gondals-teal); }
+.header__search .predictive-search__item--term .icon-arrow { width: 1.6rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .header__search .search-modal__content, .header__search .search-modal .modal-overlay { animation: none; }
+}
+
 /* ---------- Liquid fill hover (saamaan) ----------
    An oversized ellipse waits above the button, drops in on hover to flood it
    with the inverse colour, and continues out the bottom on leave

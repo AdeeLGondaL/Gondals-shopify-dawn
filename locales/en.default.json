@@ -539,6 +539,10 @@
     "next": "Next",
     "go_to_slide": "Go to slide {{ index }}",
     "shop_all_in": "Shop all {{ title }}",
+    "search": {
+      "placeholder": "Search products",
+      "browse": "Browse categories"
+    },
     "collection": {
       "breadcrumb": "Breadcrumb",
       "home": "Home",

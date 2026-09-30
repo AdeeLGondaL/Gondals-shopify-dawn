@@ -150,6 +150,11 @@
                           width="50"
                           height="{{ 50 | divided_by: product.featured_media.preview_image.aspect_ratio }}"
                         >
+                      {%- else -%}
+                        {%- assign gph = product.metafields.gondals.placeholder_images.value | first -%}
+                        {%- if gph -%}
+                          <img class="predictive-search__image" src="{{ gph }}&w=150" alt="" width="50" height="50">
+                        {%- endif -%}
                       {%- endif -%}
                       <div class="predictive-search__item-content{% unless settings.predictive_search_show_vendor or settings.predictive_search_show_price %} predictive-search__item-content--centered{% endunless %}">
                         {%- if settings.predictive_search_show_vendor -%}

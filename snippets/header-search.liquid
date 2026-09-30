@@ -35,6 +35,7 @@
         class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
         tabindex="-1"
       >
+        <p class="gondals-search__title" aria-hidden="true">{{ 'general.search.search' | t }}</p>
         {%- if settings.predictive_search_enabled -%}
           <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- else -%}
@@ -48,7 +49,7 @@
               type="search"
               name="q"
               value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.search' | t }}"
+              placeholder="{{ 'gondals.search.placeholder' | t }}"
               {%- if settings.predictive_search_enabled -%}
                 role="combobox"
                 aria-expanded="false"
@@ -86,6 +87,22 @@
             </div>
 
             <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+          {%- endif -%}
+
+          {%- comment -%} Shown before typing: a path forward instead of an empty panel {%- endcomment -%}
+          {%- assign browse_menu = linklists['main-menu'] -%}
+          {%- if browse_menu.links.size > 0 -%}
+            <div class="gondals-search__browse">
+              <p class="gondals-search__label">{{ 'gondals.search.browse' | t }}</p>
+              <ul class="gondals-search__chips" role="list">
+                {%- for link in browse_menu.links -%}
+                  <li><a class="gondals-chip gondals-chip--strong" href="{{ link.url }}">{{ link.title | escape }}</a></li>
+                  {%- for child in link.links -%}
+                    <li><a class="gondals-chip" href="{{ child.url }}">{{ child.title | escape }}</a></li>
+                  {%- endfor -%}
+                {%- endfor -%}
+              </ul>
+            </div>
           {%- endif -%}
         </form>
         {%- if settings.predictive_search_enabled -%}
