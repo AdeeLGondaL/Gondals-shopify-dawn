@@ -778,3 +778,4 @@ details[open] > .facets__summary .icon-caret { transform: rotate(180deg); }
   .gondals-buy-now__button::before, .product .product-form__submit::before, .gondals-sticky-atc__btn::before,
   #CartDrawer-Checkout::before, .cart__checkout-button::before { transition: none; }
 }
+/* end of Gondals brand layer */
