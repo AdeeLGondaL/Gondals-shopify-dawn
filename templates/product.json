@@ -43,16 +43,15 @@
           }
         },
         "delivery": {
-          "type": "custom_liquid",
+          "type": "gondals_delivery",
           "settings": {
-            "custom_liquid": "{% render 'gondals-delivery', min: 3, max: 7 %}"
+            "min_days": 3,
+            "max_days": 7
           }
         },
         "trust": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{% render 'gondals-pdp-trust' %}"
-          }
+          "type": "gondals_trust",
+          "settings": {}
         },
         "tab_shipping": {
           "type": "collapsible_tab",
@@ -75,7 +74,7 @@
           "settings": {
             "heading": "Questions?",
             "icon": "chat_bubble",
-            "content": "<p>Email us at <a href=\"mailto:gondals@online.de\">gondals@online.de</a>. We reply within 24 hours.</p>"
+            "content": "<p>Email us at gondals@online.de. We reply within 24 hours.</p>"
           }
         }
       },

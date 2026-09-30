@@ -497,6 +497,14 @@
                     block: block,
                     product_form_id: product_form_id
                   %}
+                {%- when 'gondals_delivery' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render 'gondals-delivery', min: block.settings.min_days, max: block.settings.max_days -%}
+                  </div>
+                {%- when 'gondals_trust' -%}
+                  <div {{ block.shopify_attributes }}>
+                    {%- render 'gondals-pdp-trust' -%}
+                  </div>
                 {%- when 'buy_buttons' -%}
                   {%- render 'buy-buttons',
                     block: block,
@@ -2151,6 +2159,37 @@
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
         }
       ]
+    },
+    {
+      "type": "gondals_delivery",
+      "name": "Delivery estimate",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "min_days",
+          "min": 1,
+          "max": 20,
+          "step": 1,
+          "label": "Minimum business days",
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "max_days",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "label": "Maximum business days",
+          "default": 7
+        }
+      ]
+    },
+    {
+      "type": "gondals_trust",
+      "name": "Trust points",
+      "limit": 1,
+      "settings": []
     }
   ],
   "settings": [
