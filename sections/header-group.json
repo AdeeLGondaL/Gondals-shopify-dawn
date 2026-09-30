@@ -49,7 +49,7 @@
         "menu_color_scheme": "scheme-1",
         "logo_position": "top-center",
         "menu": "main-menu",
-        "menu_type_desktop": "mega",
+        "menu_type_desktop": "dropdown",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": false,
         "enable_country_selector": false,
