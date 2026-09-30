@@ -21,6 +21,15 @@ Design reference: saamaan.pk (layout and UX only; Gondals keeps its own colors a
 - Logo: inline SVG in `snippets/gondals-logo.liquid` (variants: `stacked` used in header, `full`, `icon`, `text`).
 - Tone: clean and modern.
 
+## UI/UX engineering rules
+
+- **No generic placeholders:** no bright primary gradients, no rounded-full pill buttons everywhere, no floating cards with big drop shadows unless explicitly asked.
+  Explicitly requested exceptions (saamaan.pk style): the header nav rolling pill hover and the liquid-fill button hover.
+- **Typography first:** clear hierarchy with Montserrat, explicit letter-spacing (tight, about -0.02em, on headings) and explicit line-heights.
+- **Micro-interactions:** subtle, intentional easing such as `cubic-bezier(0.4, 0, 0.2, 1)` (`--gondals-ease`). No linear, bouncy or aggressive large-scale animations.
+  `--gondals-expo` (`cubic-bezier(0.3, 1, 0.3, 1)`) is reserved for the saamaan-style nav/button hovers.
+- **Shopify best practices:** layouts at premium e-commerce standard (Shopify Polaris): generous whitespace, subtle 1px borders (`#E2E8F0`-like, `--gondals-line`), muted background containers (`--gondals-soft`).
+
 ## Workflow rules
 
 - Push directly to `main`. Shopify auto-syncs within ~30-60s.
