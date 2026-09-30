@@ -176,11 +176,10 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap; min-height: 4.4rem;
   padding: 0.8rem 1.8rem; border-radius: 99px; border: 1px solid var(--gondals-line);
   color: var(--gondals-deep); font-size: 1.35rem; font-weight: 600; text-decoration: none;
-  transition: background 0.2s var(--gondals-ease), color 0.2s, border-color 0.2s;
+  --gondals-fill: var(--gondals-deep); --gondals-fill-text: #fff;
 }
-.gondals-pill span { transition: transform 0.2s var(--gondals-ease); }
-.gondals-pill:hover { background: var(--gondals-deep); border-color: var(--gondals-deep); color: #fff; }
-.gondals-pill:hover span { transform: translateX(3px); }
+.gondals-pill span { transition: transform 0.5s var(--gondals-expo); }
+@media (hover: hover) { .gondals-pill:hover span { transform: translateX(3px); } }
 
 /* ---------- Hero slideshow ---------- */
 .gondals-hero { position: relative; }
@@ -228,22 +227,19 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .gondals-hero__btn {
   --color-button: 48, 170, 189; --color-button-text: 0, 53, 61;
   font-weight: 700; min-width: 16rem; min-height: 4.6rem; font-size: 1.5rem; border-radius: 99px;
-  transition: transform 0.25s var(--gondals-spring), box-shadow 0.25s;
+  --gondals-fill: #fff; --gondals-fill-text: var(--gondals-deep);
 }
-.gondals-hero__btn::after, .gondals-hero__btn::before { box-shadow: none !important; }
-.gondals-hero__btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(48, 170, 189, 0.45); }
+.gondals-hero__btn::after { box-shadow: none !important; }
 .gondals-hero__arrow {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
   width: 4.4rem; height: 4.4rem; border-radius: 50%; border: 0; cursor: pointer;
   background: rgba(255, 255, 255, 0.92); color: var(--gondals-deep); font-size: 2.8rem; line-height: 1;
-  display: none; place-items: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s var(--gondals-spring), background 0.2s;
+  display: none; place-items: center; overflow: hidden;
+  --gondals-fill: var(--gondals-teal); --gondals-fill-text: var(--gondals-deep);
 }
 .gondals-hero__arrow svg { width: 2rem; height: 2rem; }
 /* Arrows sit bottom-right so they never cover the slide copy on 990-1300px screens */
 .gondals-hero__arrow { top: auto; bottom: 2.4rem; transform: none; }
-.gondals-hero__arrow:hover { background: var(--gondals-teal); color: #fff; transform: scale(1.08); }
-.gondals-hero__arrow:active { transform: scale(0.94); }
 @media screen and (min-width: 990px) { .gondals-hero__arrow { display: grid; } }
 .gondals-hero__arrow--prev { right: 8rem; }
 .gondals-hero__arrow--next { right: 2.4rem; }
@@ -296,7 +292,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
   transition: background 0.2s, color 0.2s, border-color 0.2s, opacity 0.2s;
 }
 .gondals-row__arrow svg { width: 1.8rem; height: 1.8rem; }
-.gondals-row__arrow:hover:not(:disabled) { background: var(--gondals-deep); color: #fff; border-color: var(--gondals-deep); }
+.gondals-row__arrow { position: relative; overflow: hidden; --gondals-fill: var(--gondals-deep); --gondals-fill-text: #fff; }
 .gondals-row__arrow:disabled { opacity: 0.35; cursor: default; }
 @media screen and (min-width: 990px) { .gondals-row__arrow { display: grid; } }
 @media screen and (max-width: 749px) { .gondals-pill { padding: 0.6rem 1.4rem; font-size: 1.25rem; } }
@@ -321,7 +317,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 }
 @media (hover: hover) {
   .product-card-wrapper:hover .card--card,
-  .product-card-wrapper:hover .card--standard { box-shadow: var(--gondals-shadow); transform: translateY(-4px); border-color: transparent; }
+  .product-card-wrapper:hover .card--standard { border-color: rgba(48, 170, 189, 0.55); }
   .product-card-wrapper:hover .card__media .media img:first-child { transform: scale(1.06); }
 }
 .product-card-wrapper .card__inner { border-radius: 0; background: var(--gondals-soft); }
@@ -358,8 +354,7 @@ h1, h2, .h0, .h1, .h2 { letter-spacing: -0.02em; }
 .gondals-buy-now__button::after, .gondals-buy-now__button::before { border-radius: 10px !important; }
 .gondals-buy-now__button { white-space: nowrap; }
 @media screen and (max-width: 749px) { .gondals-buy-now__button { font-size: 1.3rem; min-height: 4rem; padding: 0 0.8rem; } }
-.gondals-buy-now__button:hover { --color-button: 48, 170, 189; --color-button-text: 0, 53, 61; }
-.gondals-buy-now__button:active { transform: scale(0.97); }
+.gondals-buy-now__button { --gondals-fill: var(--gondals-teal); --gondals-fill-text: var(--gondals-deep); }
 
 /* Grids elsewhere (collection page, search) */
 .product-grid .grid__item { transition: none; }
@@ -489,8 +484,7 @@ body.gondals-has-sticky-atc { --gondals-float-base: 8.6rem; }
   transition: transform 0.2s var(--gondals-spring), box-shadow 0.2s;
 }
 .product .product-form__submit::after, .product .product-form__submit::before { border-radius: 12px !important; }
-.product .product-form__submit:hover:not([disabled]) { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0, 53, 61, 0.22); }
-.product .product-form__submit:active:not([disabled]) { transform: scale(0.98); }
+.product .product-form__submit { --gondals-fill: var(--gondals-teal); --gondals-fill-text: var(--gondals-deep); }
 .product .shopify-payment-button__button { border-radius: 12px !important; min-height: 5rem; overflow: hidden; }
 .product .shopify-payment-button__button--unbranded { background: var(--gondals-teal) !important; color: var(--gondals-deep) !important; font-weight: 700; font-size: 1.6rem; }
 .product .shopify-payment-button__button--unbranded:hover { background: var(--gondals-teal-dark) !important; color: #fff !important; }
@@ -544,7 +538,7 @@ body.gondals-has-sticky-atc { --gondals-float-base: 8.6rem; }
   flex: 0 0 auto; min-height: 4.6rem; border-radius: 12px; font-weight: 700; padding: 0 2.4rem;
 }
 .gondals-sticky-atc__btn::after, .gondals-sticky-atc__btn::before { border-radius: 12px !important; }
-.gondals-sticky-atc__btn:hover { --color-button: 48, 170, 189; --color-button-text: 0, 53, 61; }
+.gondals-sticky-atc__btn { --gondals-fill: var(--gondals-teal); --gondals-fill-text: var(--gondals-deep); }
 @media screen and (max-width: 749px) {
   .gondals-sticky-atc__media { display: none; }
   .gondals-sticky-atc__btn { padding: 0 1.6rem; }
@@ -592,10 +586,45 @@ body.gondals-has-sticky-atc { padding-bottom: 7.2rem; }
   transition: transform 0.2s var(--gondals-spring), box-shadow 0.2s;
 }
 #CartDrawer-Checkout::after, #CartDrawer-Checkout::before, .cart__checkout-button::after, .cart__checkout-button::before { border-radius: 12px !important; }
-@media (hover: hover) { #CartDrawer-Checkout:hover:not([disabled]), .cart__checkout-button:hover:not([disabled]) { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0, 53, 61, 0.22); } }
-#CartDrawer-Checkout:active, .cart__checkout-button:active { transform: scale(0.98); }
+#CartDrawer-Checkout, .cart__checkout-button { --gondals-fill: var(--gondals-teal); --gondals-fill-text: var(--gondals-deep); }
 .cart-item__name { font-weight: 600; }
 .cart__items .gondals-freeship { max-width: 56rem; margin-bottom: 2.4rem; }
+
+/* ---------- Liquid fill hover (saamaan) ----------
+   An oversized ellipse waits above the button, drops in on hover to flood it
+   with the inverse colour, and continues out the bottom on leave
+   (direction handled by gondals-hover.js). No shadows, no lift. */
+.gondals-pill { position: relative; overflow: hidden; isolation: isolate; }
+.gondals-pill, .gondals-hero__btn, .gondals-hero__arrow, .gondals-row__arrow, .gondals-buy-now__button,
+.product .product-form__submit, .gondals-sticky-atc__btn, #CartDrawer-Checkout, .cart__checkout-button {
+  overflow: hidden; isolation: isolate;
+  transition: color 0.5s var(--gondals-expo), border-color 0.5s var(--gondals-expo);
+}
+.gondals-pill::before, .gondals-hero__btn::before, .gondals-hero__arrow::before, .gondals-row__arrow::before,
+.gondals-buy-now__button::before, .product .product-form__submit::before, .gondals-sticky-atc__btn::before,
+#CartDrawer-Checkout::before, .cart__checkout-button::before {
+  content: ''; position: absolute; z-index: -1; inset: auto; left: -25%; top: -50%; width: 150%; height: 200%;
+  border-radius: 50% !important; background: var(--gondals-fill); box-shadow: none !important; pointer-events: none;
+  transform: translate3d(0, -76%, 0); transition: transform 0.5s var(--gondals-expo);
+}
+@media (hover: hover) {
+  :is(.gondals-pill, .gondals-hero__btn, .gondals-hero__arrow, .gondals-row__arrow, .gondals-buy-now__button,
+    .product .product-form__submit, .gondals-sticky-atc__btn, #CartDrawer-Checkout, .cart__checkout-button):hover:not(:disabled, [aria-disabled='true']) {
+    color: var(--gondals-fill-text);
+  }
+  :is(.gondals-pill, .gondals-hero__btn, .gondals-hero__arrow, .gondals-row__arrow, .gondals-buy-now__button,
+    .product .product-form__submit, .gondals-sticky-atc__btn, #CartDrawer-Checkout, .cart__checkout-button):hover:not(:disabled, [aria-disabled='true'])::before {
+    transform: translate3d(0, 0, 0);
+  }
+  .gondals-pill:hover { border-color: var(--gondals-deep); }
+}
+.is-fill-out::before { transform: translate3d(0, 76%, 0) !important; }
+.is-fill-reset::before { transition: none !important; }
+
+/* Nav labels: no Dawn hover underline */
+.header__inline-menu .header__menu-item span,
+.header__inline-menu .header__menu-item:hover span,
+.header__inline-menu .header__menu-item:hover { text-decoration: none !important; }
 
 /* ---------- Keyboard focus ----------
    Dawn's default ring uses the scheme foreground, which disappears on
@@ -623,4 +652,7 @@ body.gondals-has-sticky-atc { padding-bottom: 7.2rem; }
   .header__inline-menu details[open] > .header__submenu,
   .header__inline-menu details[open] > .header__submenu > li { animation: none; opacity: 1; transform: none; }
   .gondals-nav__roll, .header__inline-menu .header__menu-item > span:first-child { transition: none; }
+  .gondals-pill::before, .gondals-hero__btn::before, .gondals-hero__arrow::before, .gondals-row__arrow::before,
+  .gondals-buy-now__button::before, .product .product-form__submit::before, .gondals-sticky-atc__btn::before,
+  #CartDrawer-Checkout::before, .cart__checkout-button::before { transition: none; }
 }
