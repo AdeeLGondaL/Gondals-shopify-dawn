@@ -9,8 +9,8 @@ Design reference: saamaan.pk (layout and UX only; Gondals keeps its own colors a
 | Item | Value |
 |---|---|
 | Store | `xvv6ud-hq.myshopify.com` (password protected, trial plan) |
-| Theme | `Gondals-shopify-dawn/main`, id `210818531719`, **unpublished**, synced from this repo's `main` via Shopify's GitHub integration |
-| Live theme | Horizon (default, untouched) |
+| Theme | `Gondals-shopify-dawn/main`, id `210818531719`, **published (live)** since 30 Sep 2026, synced from this repo's `main` via Shopify's GitHub integration |
+| Other themes | Horizon (unpublished), a Shopify CLI development theme |
 | Currency / market | EUR, Germany + EU, English + German |
 | Support email | gondals@online.de (placeholder until domain is bought) |
 
@@ -59,6 +59,7 @@ Say more with less. Every word must carry a fact, a label or an action.
 - Verify a sync landed by checking the file's `updatedAt` via the Shopify Admin API, not by assuming.
   The GitHub sync can **silently skip some files of a push** (seen with `assets/gondals.css` and locales while a new section in the same push synced).
   Fix: re-touch the skipped file (whitespace change) in a new commit and push again.
+- A `link_list` setting's `default` may only be `main-menu` or `footer`; any other handle makes Shopify reject the whole section file (set the menu in the template JSON instead).
 - Dawn hides `div:empty` (`display: none`). Empty decorative divs (overlays) need `display: block !important` or use a `span`.
 - Keep Dawn core edits minimal; brand styles live in `assets/gondals.css` (loaded after `base.css` in `layout/theme.liquid`).
 - Respect `prefers-reduced-motion` for any new animation.
@@ -75,6 +76,10 @@ Say more with less. Every word must carry a fact, a label or an action.
 | `sections/gondals-promo-tiles.liquid` | Image promo tiles |
 | `sections/gondals-ticker.liquid` | Infinite scrolling USP ticker |
 | `sections/gondals-collection-header.liquid` | Collection page header: breadcrumb, title, description, sub-category chips from the main menu's child links |
+| `sections/gondals-legal-page.liquid` + `templates/page.legal.json` | Legal page layout: title, text column, sidebar from menu `legal` |
+| `sections/gondals-withdrawal-form.liquid` + `templates/page.withdrawal.json` | Online withdrawal form ("Vertrag hier widerrufen") via contact form |
+| `snippets/header-search.liquid` + `sections/predictive-search.liquid` | Search side panel with category chips; placeholder thumbnails |
+| `docs/legal/*.html` | Source drafts of the legal pages (not synced to Shopify) |
 | `assets/gondals-menu.js` / `assets/gondals-hover.js` | Header dropdown hover-intent + animated close / liquid-fill button hover exit direction |
 | `sections/trust-bar.liquid` | Icon trust points |
 | `sections/main-product.liquid` | Dawn + blocks `gondals_delivery`, `gondals_trust`, savings under price, sticky ATC |
@@ -95,13 +100,19 @@ Locale strings live under the `gondals` key in `locales/en.default.json` and `lo
 
 ## Germany / EU compliance notes
 
-- Needed before launch: Impressum, Widerrufsbelehrung + form, Datenschutzerklärung + cookie consent, AGB, prices incl. VAT with shipping cost info.
+- Legal pages exist as **drafts with [placeholders]** (pages `impressum`, `agb`, `widerrufsbelehrung`, `versand-zahlung`, `widerruf`; menus `legal`, `footer-legal`, `footer`).
+  Before launch: fill owner name, phone, VAT ID, return address, shipping costs; have them legally reviewed (or replace with a legal-text service);
+  paste the final texts into Settings → Policies too (the API token lacks `write_legal_policies`), so checkout links them.
+- Privacy policy is still Shopify's English auto-text: replace with a German GDPR Datenschutzerklärung.
+- Online withdrawal ("Vertrag hier widerrufen", EU rule from 19 June 2026): form at `/pages/widerruf`, linked in the footer on every page.
+  Shopify's contact form does **not** email the customer, so every submission needs a manual (or Flow/app) confirmation of receipt.
+- Still needed: cookie consent configured, prices incl. VAT with shipping cost info.
 - Strikethrough prices must reflect the lowest price of the last 30 days (PAngV).
 - Do not add fabricated social proof ("X just bought") or fake countdown timers.
 
 ## Backlog
 
-1. Legal pages skeleton linked in footer
+1. Finalise legal texts (see compliance notes) and German translations of menus/UI copy (Translate & Adapt)
 2. Real hero/collection images once on a paid plan; remove placeholder products
 3. Domain (recommended: gondals.de)
-4. Optional: more filters (product type, material) via the Search & Discovery app
+4. Optional: more filters (product type, material) via the Search & Discovery app; FAQ page
