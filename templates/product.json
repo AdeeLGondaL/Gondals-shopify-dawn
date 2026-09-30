@@ -35,13 +35,6 @@
             "share_label": "Share"
           }
         },
-        "category": {
-          "type": "text",
-          "settings": {
-            "text": "{{ product.type }}",
-            "text_style": "uppercase"
-          }
-        },
         "delivery": {
           "type": "gondals_delivery",
           "settings": {
@@ -79,7 +72,6 @@
         }
       },
       "block_order": [
-        "category",
         "title",
         "price",
         "variant_picker",
